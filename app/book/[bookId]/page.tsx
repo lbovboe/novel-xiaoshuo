@@ -21,6 +21,29 @@ type Book = {
   chapters: Chapter[];
 };
 
+// Get list of all available book IDs
+export async function generateStaticParams() {
+  try {
+    const outputDir = path.join(process.cwd(), 'output');
+    if (!fs.existsSync(outputDir)) {
+      return [];
+    }
+    
+    // Get all directories in the output folder (each directory is a book)
+    const books = fs.readdirSync(outputDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => ({ bookId: dirent.name }));
+    
+    return books;
+  } catch (error) {
+    console.error('Error generating static params for books:', error);
+    return [];
+  }
+}
+
+// Force static generation
+export const dynamic = 'force-static';
+
 // Get book data and its chapters
 async function getBookData(bookId: string): Promise<Book | null> {
   try {
@@ -71,8 +94,9 @@ async function getBookData(bookId: string): Promise<Book | null> {
   }
 }
 
-export default async function BookPage({ params }: { params: { bookId: string } }) {
-  const bookId = decodeURIComponent(params.bookId);
+export default async function BookPage({ params }: { params: Promise<{ bookId: string }> }) {
+  const resolvedParams = await params;
+  const bookId = decodeURIComponent(resolvedParams.bookId);
   const book = await getBookData(bookId);
   
   if (!book) {

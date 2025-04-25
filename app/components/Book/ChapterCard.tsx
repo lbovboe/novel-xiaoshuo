@@ -2,8 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { m } from 'framer-motion';
-
 type ChapterCardProps = {
   bookId: string;
   index: number;
@@ -12,11 +10,7 @@ type ChapterCardProps = {
 
 const ChapterCard = ({ bookId, index, title }: ChapterCardProps) => {
   return (
-    <m.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-      whileHover={{ scale: 1.02 }}
+    <div
     >
       <Link 
         href={`/book/${encodeURIComponent(bookId)}/chapter/${index}`}
@@ -36,7 +30,7 @@ const ChapterCard = ({ bookId, index, title }: ChapterCardProps) => {
           </div>
         </div>
       </Link>
-    </m.div>
+    </div>
   );
 };
 

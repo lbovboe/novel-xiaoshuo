@@ -13,6 +13,9 @@ type Book = {
   chapterCount: number;
 };
 
+// Force static generation
+export const dynamic = 'force-static';
+
 // Get all books data
 async function getBooks(): Promise<Book[]> {
   try {

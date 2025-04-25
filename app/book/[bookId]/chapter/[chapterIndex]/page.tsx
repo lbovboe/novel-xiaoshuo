@@ -11,6 +11,54 @@ type ChapterData = {
   content: string;
 };
 
+// Function to get all book IDs and chapter indices for static generation
+export async function generateStaticParams() {
+  try {
+    const outputDir = path.join(process.cwd(), 'output');
+    if (!fs.existsSync(outputDir)) {
+      return [];
+    }
+    
+    // Get all book directories
+    const bookDirs = fs.readdirSync(outputDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+    
+    // For each book, get all its chapters
+    const params = [];
+    
+    for (const bookId of bookDirs) {
+      const bookPath = path.join(outputDir, bookId);
+      const files = fs.readdirSync(bookPath);
+      
+      // Filter chapter files
+      const chapterFiles = files.filter(file => 
+        file.startsWith('chapter-') && file.endsWith('.json')
+      );
+      
+      // Create params for each chapter
+      for (const file of chapterFiles) {
+        const chapterIndex = parseInt(
+          file.replace('chapter-', '').replace('.json', '')
+        );
+        
+        params.push({
+          bookId,
+          chapterIndex: String(chapterIndex)
+        });
+      }
+    }
+    
+    return params;
+  } catch (error) {
+    console.error('Error generating static params for chapters:', error);
+    return [];
+  }
+}
+
+// Force static generation
+export const dynamic = 'force-static';
+
 // Get chapter content by book ID and chapter index
 async function getChapterContent(bookId: string, chapterIndex: number): Promise<ChapterData | null> {
   try {
@@ -18,7 +66,7 @@ async function getChapterContent(bookId: string, chapterIndex: number): Promise<
       process.cwd(),
       'output',
       bookId,
-      `chapter-000${chapterIndex}.json`
+      `chapter-${String(chapterIndex).padStart(4, '0')}.json`
     );
     
     // Read file content
@@ -45,7 +93,7 @@ async function chapterExists(bookId: string, chapterIndex: number): Promise<bool
       process.cwd(),
       'output',
       bookId,
-      `chapter-000${chapterIndex}.json`
+      `chapter-${String(chapterIndex).padStart(4, '0')}.json`
     );
     return fs.existsSync(filePath);
   } catch {
@@ -71,10 +119,11 @@ function formatContent(content: string) {
 export default async function ChapterPage({ 
   params 
 }: { 
-  params: { bookId: string; chapterIndex: string } 
+  params: Promise<{ bookId: string; chapterIndex: string }> 
 }) {
-  const bookId = decodeURIComponent(params.bookId);
-  const chapterIndex = parseInt(params.chapterIndex);
+  const resolvedParams = await params;
+  const bookId = decodeURIComponent(resolvedParams.bookId);
+  const chapterIndex = parseInt(resolvedParams.chapterIndex);
   const chapter = await getChapterContent(bookId, chapterIndex);
   
   // Check if previous and next chapters exist
