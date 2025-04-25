@@ -71,10 +71,11 @@ function formatContent(content: string) {
 export default async function ChapterPage({ 
   params 
 }: { 
-  params: { bookId: string; chapterIndex: string } 
+  params: Promise<{ bookId: string; chapterIndex: string }> 
 }) {
-  const bookId = decodeURIComponent((await params).bookId);
-  const chapterIndex = parseInt((await params).chapterIndex);
+  const resolvedParams = await params;
+  const bookId = decodeURIComponent(resolvedParams.bookId);
+  const chapterIndex = parseInt(resolvedParams.chapterIndex);
   const chapter = await getChapterContent(bookId, chapterIndex);
   
   // Check if previous and next chapters exist

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ReactNode } from 'react';
-import { m } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 
 interface FadeInProps {
   children: ReactNode;
@@ -18,17 +18,25 @@ const FadeIn = ({
   duration = 0.5,
   className = '',
 }: FadeInProps) => {
-  // Set initial and animate properties based on direction
-  let initial = { opacity: 0 };
-  if (direction === 'up') initial = { ...initial, y: 30 };
-  if (direction === 'down') initial = { ...initial, y: -30 };
-  if (direction === 'left') initial = { ...initial, x: 30 };
-  if (direction === 'right') initial = { ...initial, x: -30 };
+  // Create variants based on direction
+  const variants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: direction === 'up' ? 30 : direction === 'down' ? -30 : 0,
+      x: direction === 'left' ? 30 : direction === 'right' ? -30 : 0,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+    },
+  };
 
   return (
     <m.div
-      initial={initial}
-      animate={{ opacity: 1, x: 0, y: 0 }}
+      initial="hidden"
+      animate="visible"
+      variants={variants}
       transition={{
         duration,
         delay,
