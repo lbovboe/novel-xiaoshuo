@@ -63,7 +63,7 @@ export default async function Home() {
       </FadeIn>
       
       <FadeIn direction="up" delay={0.2}>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-5">
           {books.map((book, index) => (
             <BookCard
               key={book.id}
