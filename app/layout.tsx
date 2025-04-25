@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/app/context/ThemeContext';
+import MotionConfig from '@/app/components/Animation/MotionConfig';
 import './globals.css';
 import './reset.css';
 import Footer from '@/app/components/Footer/Footer';
@@ -37,9 +38,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         dark:via-dark-background-gradient-via 
         dark:to-dark-background-gradient-end">
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <MotionConfig>
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </MotionConfig>
         </ThemeProvider>
       </body>
     </html>

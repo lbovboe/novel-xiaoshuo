@@ -2,6 +2,7 @@ import React from 'react';
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import FadeIn from '@/app/components/tools/Animation/FadeIn';
 
 // Chapter data type
 type ChapterData = {
@@ -44,7 +45,7 @@ async function chapterExists(bookId: string, chapterIndex: number): Promise<bool
       process.cwd(),
       'output',
       bookId,
-      `chapter-${chapterIndex}.json`
+      `chapter-000${chapterIndex}.json`
     );
     return fs.existsSync(filePath);
   } catch {
@@ -54,16 +55,17 @@ async function chapterExists(bookId: string, chapterIndex: number): Promise<bool
 
 // Format content with proper paragraph breaks
 function formatContent(content: string) {
-  return content.split('\n').map((paragraph, index) => {
-    // Skip empty paragraphs
-    if (!paragraph.trim()) return null;
-    
-    return (
-      <p key={index} className="mb-4 text-lg leading-relaxed">
-        {paragraph}
-      </p>
-    );
-  });
+  // Split content into paragraphs
+  const paragraphs = content.split('\n').filter(p => p.trim().length > 0);
+  
+  return paragraphs.map((paragraph, index) => (
+    <p 
+      key={index} 
+      className="mb-4 text-lg leading-relaxed text-light-text-primary dark:text-dark-text-primary"
+    >
+      {paragraph}
+    </p>
+  ));
 }
 
 export default async function ChapterPage({ 
@@ -82,8 +84,8 @@ export default async function ChapterPage({
   if (!chapter) {
     return (
       <div className="container mx-auto p-4 text-center">
-        <h1 className="text-2xl font-bold mb-4">Chapter not found</h1>
-        <Link href={`/book/${encodeURIComponent(bookId)}`} className="text-blue-500 hover:underline">
+        <h1 className="mb-4 text-2xl font-bold text-light-text-primary dark:text-dark-text-primary">Chapter not found</h1>
+        <Link href={`/book/${encodeURIComponent(bookId)}`} className="text-light-primary hover:underline dark:text-dark-primary">
           Back to Book
         </Link>
       </div>
@@ -91,41 +93,60 @@ export default async function ChapterPage({
   }
   
   return (
-    <div className="container mx-auto max-w-4xl p-4 md:p-8">
-      <div className="mb-6">
-        <Link href={`/book/${encodeURIComponent(bookId)}`} className="text-blue-500 hover:underline mb-4 inline-block">
-          ← Back to Chapter List
-        </Link>
-      </div>
+    <div className="container mx-auto max-w-4xl px-4 pb-12 md:px-8 md:pt-4">
+      <FadeIn direction="left">
+        <div className="mb-6">
+          <Link 
+            href={`/book/${encodeURIComponent(bookId)}`} 
+            className="group mb-4 inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+          >
+            <span className="mr-2 transform transition-transform duration-300 group-hover:-translate-x-1">←</span> 
+            Back to Chapter List
+          </Link>
+        </div>
+      </FadeIn>
       
-      <h1 className="text-2xl md:text-3xl font-bold mb-2">{chapter.title}</h1>
-      <div className="text-sm text-gray-500 mb-8">Chapter {chapter.index}</div>
+      <FadeIn>
+        <div className="mb-8">
+          <h1 className="mb-2 text-2xl font-bold text-light-text-primary md:text-3xl dark:text-dark-text-primary">
+            {chapter.title}
+          </h1>
+          <div className="mb-2 text-sm text-light-text-secondary dark:text-dark-text-secondary">
+            Chapter {chapter.index}
+          </div>
+          <div className="h-1 w-24 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary"></div>
+        </div>
+      </FadeIn>
       
-      <div className="bg-white rounded-lg p-6 shadow-md">
-        <div className="prose prose-lg max-w-none">
+      <div className="rounded-lg bg-light-paper p-6 shadow-lg dark:bg-dark-paper">
+        <div className="prose prose-lg max-w-none dark:prose-invert">
           {formatContent(chapter.content)}
         </div>
       </div>
       
       <div className="mt-8 flex justify-between">
         {prevChapterExists && (
-          <Link
-            href={`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex - 1}`}
-            className="rounded bg-gray-200 px-4 py-2 transition-colors hover:bg-gray-300"
-          >
-            ← Previous Chapter
-          </Link>
+          <div className="transform transition-transform duration-300 hover:-translate-x-1">
+            <Link
+              href={`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex - 1}`}
+              className="rounded bg-light-paper px-4 py-2 text-light-text-primary shadow-md transition-all hover:bg-light-primary/10 hover:text-light-primary dark:bg-dark-paper dark:text-dark-text-primary dark:hover:bg-dark-primary/10 dark:hover:text-dark-primary"
+            >
+              ← Previous Chapter
+            </Link>
+          </div>
         )}
         
         <div className="flex-grow"></div>
         
         {nextChapterExists && (
-          <Link
-            href={`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex + 1}`}
-            className="rounded bg-gray-200 px-4 py-2 transition-colors hover:bg-gray-300"
-          >
-            Next Chapter →
-          </Link>
+          <div className="transform transition-transform duration-300 hover:translate-x-1">
+            <Link
+              href={`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex + 1}`}
+              className="rounded bg-light-paper px-4 py-2 text-light-text-primary shadow-md transition-all hover:bg-light-primary/10 hover:text-light-primary dark:bg-dark-paper dark:text-dark-text-primary dark:hover:bg-dark-primary/10 dark:hover:text-dark-primary"
+            >
+              Next Chapter →
+            </Link>
+          </div>
         )}
       </div>
     </div>

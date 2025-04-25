@@ -1,8 +1,8 @@
 import React from 'react';
 import fs from 'fs';
 import path from 'path';
-import Link from 'next/link';
-import Image from 'next/image';
+import FadeIn from './components/tools/Animation/FadeIn';
+import BookCard from './components/Book/BookCard';
 
 // Type definition for book data
 type Book = {
@@ -52,42 +52,27 @@ export default async function Home() {
   const books = await getBooks();
   
   return (
-    <div className="container mx-auto p-4 md:p-8">
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Novel Collection</h1>
+    <div className="container mx-auto px-4 pb-12 pt-8 md:px-8 md:pt-12">
+      <FadeIn direction="down">
+        <h1 className="mb-8 text-center text-3xl font-bold text-light-text-primary md:text-4xl dark:text-dark-text-primary">
+          Novel Collection
+        </h1>
+      </FadeIn>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {books.map((book) => (
-          <Link 
-            href={`/book/${encodeURIComponent(book.id)}`} 
-            key={book.id}
-            className="group"
-          >
-            <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <div className="relative h-64 w-full overflow-hidden">
-                <Image 
-                  src={book.coverImage}
-                  alt={book.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">{book.title}</h2>
-                <p className="text-gray-600 mb-4">{book.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                    {book.chapterCount} Chapters
-                  </span>
-                  <span className="text-blue-600 font-medium text-sm group-hover:underline">
-                    Read Now →
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <FadeIn direction="up" delay={0.2}>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {books.map((book, index) => (
+            <BookCard
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              description={book.description}
+              coverImage={book.coverImage}
+              chapterCount={book.chapterCount}
+            />
+          ))}
+        </div>
+      </FadeIn>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface ChipProps {
   text: string;
@@ -46,11 +46,11 @@ const Chip = ({ text, selected = false, onClick }: ChipProps) => {
         // rounded-md - Match button corners
         // bg-gradient-to-r - Right-directed gradient
         // from-/to- classes - Gradient colors for light/dark modes
-        <motion.span
+        <m.span
           layoutId="pill-tab"
           transition={{ type: 'spring', duration: 0.5 }}
           className="absolute inset-0 z-0 rounded-md bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary"
-        ></motion.span>
+        ></m.span>
       )}
     </button>
   );
