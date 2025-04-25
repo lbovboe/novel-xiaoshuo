@@ -15,21 +15,21 @@ import { FiSun, FiMoon } from 'react-icons/fi';
  * Renders a button that allows users to toggle between light and dark themes.
  * Uses the useTheme hook from ThemeContext to access and modify the current theme.
  * Displays different icons (sun/moon) based on the current theme state.
- * 
+ *
  * @example
  * ```jsx
  * <ThemeToggle />
  * ```
- * 
- * @returns {JSX.Element} A button element with theme toggle functionality
+ *
+ * @returns {React.ReactNode} A button element with theme toggle functionality
  */
-const ThemeToggle = (): JSX.Element => {
+const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
-      className={`relative rounded-md p-2  transition-colors text-dark-text-primary bg-gradient-to-r ${
+      className={`relative rounded-md bg-gradient-to-r p-2 text-dark-text-primary transition-colors ${
         theme === 'light' ? 'from-light-primary to-light-secondary' : 'from-dark-primary to-dark-secondary'
       }`}
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}

@@ -1,5 +1,3 @@
-const Faq = () => {
+export default function Faq() {
   return <div></div>;
-};
-
-export default Faq;
+}

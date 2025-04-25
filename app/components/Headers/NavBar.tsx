@@ -14,7 +14,6 @@ import Image from 'next/image';
  */
 const navItems = [
   { text: 'Home', href: '/' },
-  { text: 'Search', href: '/search' },
   { text: 'About', href: '/about' },
   { text: 'FAQ', href: '/faq' },
 ];
@@ -29,32 +28,27 @@ const navItems = [
  * - A theme toggle button
  * The component maintains a selected state for the navigation items and
  * supports both light and dark themes.
- * 
+ *
  * @example
  * ```jsx
  * <Navbar />
  * ```
- * 
- * @returns {JSX.Element} A navigation bar component with logo, navigation links, and theme toggle
+ *
+ * @returns {React.ReactNode} A navigation bar component with logo, navigation links, and theme toggle
  */
-const Navbar = (): JSX.Element => {
-/** 
- * useState hook for selected nav item
- * @type {Array<string|Function>}
- */
+const Navbar = () => {
+  /**
+   * useState hook for selected nav item
+   * @type {Array<string|Function>}
+   */
   const [selected, setSelected] = useState(navItems[0].text);
 
   return (
-    <nav className="w-full border-b  bg-light-paper/30 px-6 py-4  dark:bg-dark-paper/30 ">
+    <nav className="w-full border-b bg-light-paper/30 px-6 py-4 dark:bg-dark-paper/30">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Logo */}
-       
-        <Image
-          src="/icon1.png"
-          alt="Logo"
-          width={40}
-          height={40}
-        />
+
+        <Image src="/icon1.png" alt="Logo" width={40} height={40} />
         {/* Navigation chips */}
         <div className="flex items-center gap-2">
           {navItems.map((item) => (
