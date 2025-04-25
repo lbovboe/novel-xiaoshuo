@@ -4,43 +4,14 @@ import Chip from '../tools/Animation/Chip';
 import Link from 'next/link';
 import ThemeToggle from '../tools/ThemeToggle';
 import Image from 'next/image';
-/**
- * @module Navbar
- */
 
-/**
- * Navigation items configuration
- * @type {Array<{text: string, href: string}>}
- */
 const navItems = [
   { text: 'Home', href: '/' },
   { text: 'About', href: '/about' },
   { text: 'FAQ', href: '/faq' },
 ];
 
-/**
- * Navbar Component - Main navigation bar for the application
- * @component
- * @description
- * Renders a responsive navigation bar that includes:
- * - A logo
- * - Navigation links displayed as interactive chips
- * - A theme toggle button
- * The component maintains a selected state for the navigation items and
- * supports both light and dark themes.
- *
- * @example
- * ```jsx
- * <Navbar />
- * ```
- *
- * @returns {React.ReactNode} A navigation bar component with logo, navigation links, and theme toggle
- */
 const Navbar = () => {
-  /**
-   * useState hook for selected nav item
-   * @type {Array<string|Function>}
-   */
   const [selected, setSelected] = useState(navItems[0].text);
 
   return (

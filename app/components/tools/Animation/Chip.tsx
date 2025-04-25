@@ -6,33 +6,6 @@ interface ChipProps {
   onClick?: () => void;
 }
 
-/**
- * An interactive chip component with animation support.
- * When selected, displays a gradient background with a smooth animation.
- * Supports both light and dark themes.
- *
- * Animation Logic:
- * 1. Each chip has a gradient background (motion.span) with the same layoutId="pill-tab"
- * 2. When you click a chip, it becomes "selected" and the previous one becomes "unselected"
- * 3. Because they share the same layoutId, Framer Motion treats them as the same element
- * 4. This makes the gradient background smoothly animate from the old position to the new position
- * 5. A spring transition is used to give it a natural, bouncy feel
- *
- * @component
- * @param {Object} props - The component props
- * @param {string} props.text - The text to display inside the chip
- * @param {boolean} [props.selected=false] - Whether the chip is in a selected state
- * @param {function} [props.onClick] - Optional click handler for the chip
- *
- * @example
- * ```tsx
- * <Chip
- *   text="Filter"
- *   selected={isSelected}
- *   onClick={() => setSelected(!isSelected)}
- * />
- * ```
- */
 const Chip = ({ text, selected = false, onClick }: ChipProps) => {
   // Tailwind classes explanation:
   // relative         - Required for absolute positioning of animation overlay
@@ -76,14 +49,7 @@ const Chip = ({ text, selected = false, onClick }: ChipProps) => {
         <motion.span
           layoutId="pill-tab"
           transition={{ type: 'spring', duration: 0.5 }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 0,
-            borderRadius: '0.375rem' /* rounded-md */,
-            background: 'linear-gradient(to right, var(--light-primary), var(--light-secondary))',
-          }}
-          className="dark:from-dark-primary dark:to-dark-secondary"
+          className="absolute inset-0 z-0 rounded-md bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary"
         ></motion.span>
       )}
     </button>
