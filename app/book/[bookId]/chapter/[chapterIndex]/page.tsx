@@ -144,7 +144,7 @@ export default async function ChapterPage({
   return (
     <div className="container mx-auto max-w-4xl px-4 pb-12 md:px-8 md:pt-4">
       <FadeIn direction="left">
-        <div className="mb-6">
+        <div className="mt-4">
           <Link 
             href={`/book/${encodeURIComponent(bookId)}`} 
             className="group mb-4 inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
@@ -156,7 +156,7 @@ export default async function ChapterPage({
       </FadeIn>
       
       <FadeIn>
-        <div className="mb-8 w-fit">
+        <div className="mb-4 w-fit">
           <h1 className="mb-2 text-2xl font-bold text-light-text-primary md:text-3xl dark:text-dark-text-primary">
             {chapter.title}
           </h1>
