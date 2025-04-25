@@ -11,91 +11,91 @@ const config: Config = {
     extend: {
       colors: {
         light: {
-          // === Light Mode Color Scheme - Sky Blue Theme ===
+          // === Light Mode Color Scheme - Classic Book Theme ===
           background: {
-            DEFAULT: '#f8fafc', // Slate-50 (fallback)
+            DEFAULT: '#f8f5f1', // Warm cream paper
             gradient: {
-              start: '#f0f9ff', // Sky-50
-              via: '#e0f2fe',   // Sky-100
-              end: '#bae6fd'    // Sky-200
-            }
+              start: '#f8f5f1', // Cream paper
+              via: '#f3e9d9', // Aged parchment
+              end: '#e8d9bf', // Vintage page color
+            },
           },
-          // Usage: bg-gradient-to-br from-light-background-gradient-start 
+          // Usage: bg-gradient-to-br from-light-background-gradient-start
           // via-light-background-gradient-via to-light-background-gradient-end
 
-          paper: '#bae6fd', // White
-          // Light mode elevated surface - clean white
+          paper: '#fff8eb', // Soft ivory paper
+          // Light mode elevated surface - classic book page
           // Usage: bg-light-paper
 
-          primary: '#0ea5e9',    // Sky-500
-          // Light mode primary actions - vibrant sky blue
+          primary: '#8c7851', // Leather bookmark brown
+          // Light mode primary actions - classic book binding color
           // Usage: bg-light-primary, text-light-primary
 
-          secondary: '#14b8a6', // Teal-500
-          // Light mode secondary actions - lighter sky blue
+          secondary: '#b5651d', // Aged leather accent
+          // Light mode secondary actions - book spine color
           // Usage: bg-light-secondary, text-light-secondary
 
           text: {
-            primary: '#0f172a', // Slate-900
-            // Light mode main text - deep slate for contrast
+            primary: '#2d2926', // Dark espresso ink
+            // Light mode main text - classic book text
             // Usage: text-light-text-primary
 
-            secondary: '#475569', // Slate-600
-            // Light mode secondary text - balanced slate
+            secondary: '#594a42', // Sepia tone
+            // Light mode secondary text - aged ink color
             // Usage: text-light-text-secondary
 
-            disabled: '#94a3b8', // Slate-400
-            // Light mode disabled text - subtle slate
+            disabled: '#a89b91', // Faded text
+            // Light mode disabled text - subtle faded ink
             // Usage: text-light-text-disabled
           },
 
-          border: '#e2e8f0', // Slate-200
-          // Light mode borders - subtle boundaries
+          border: '#d3c7b9', // Vintage page edge
+          // Light mode borders - subtle boundaries like page edges
           // Usage: border-light-border
         },
         dark: {
-          // === Dark Mode Color Scheme - Cosmic Purple Theme ===
+          // === Dark Mode Color Scheme - Eye-Friendly Reading Theme ===
           background: {
-            DEFAULT: '#1e1b4b', // Fallback color (Indigo-950)
+            DEFAULT: '#1a1a1a', // Soft black
             gradient: {
-              start: '#312e81', // Indigo-900
-              via: '#6b21a8',   // Purple-800
-              end: '#4c1d95'    // Purple-900
-            }
+              start: '#1a1a1a', // Soft black
+              via: '#232323', // Dark charcoal
+              end: '#2c2c2c', // Medium charcoal
+            },
           },
-          // Usage: dark:bg-gradient-to-br from-dark-background-gradient-start 
+          // Usage: dark:bg-gradient-to-br from-dark-background-gradient-start
           // via-dark-background-gradient-via to-dark-background-gradient-end
 
-          paper: '#312e81', // Indigo-900
-          // Dark mode elevated surface - cosmic purple
+          paper: '#2c2c2c', // Dark charcoal
+          // Dark mode elevated surface - soft on eyes
           // Usage: dark:bg-dark-paper
 
-          primary: '#a78bfa', // Violet-400 for a bright stellar glow
-          // Dark mode primary actions - bright star
+          primary: '#a8937e', // Muted amber
+          // Dark mode primary actions - low blue light amber
           // Usage: dark:bg-dark-primary, dark:text-dark-primary
 
-          secondary: '#e879f9', // Pink-400 for cosmic accent
-          // Dark mode secondary actions - cosmic energy
+          secondary: '#7e8d9a', // Muted slate blue
+          // Dark mode secondary actions - low intensity
           // Usage: dark:bg-dark-secondary, dark:text-dark-secondary
 
           text: {
-            primary: '#faf5ff', // Purple-50 with max brightness
-            // Dark mode main text - starlight
+            primary: '#e8e6e3', // Off-white text
+            // Dark mode main text - not harsh white
             // Usage: dark:text-dark-text-primary
 
-            secondary: '#c4b5fd', // Violet-300 for subtle cosmic dust
-            // Dark mode secondary text - cosmic dust
+            secondary: '#b2ada7', // Muted gray
+            // Dark mode secondary text - reduced contrast
             // Usage: dark:text-dark-text-secondary
 
-            disabled: '#7c3aed', // Violet-600 for distant elements
-            // Dark mode disabled text - distant matter
+            disabled: '#6c6c6c', // Dark gray
+            // Dark mode disabled text - further reduced contrast
             // Usage: dark:text-dark-text-disabled
           },
 
-          border: '#4c1d95', // Purple-900 for cosmic boundaries
-          // Dark mode borders - space boundaries
+          border: '#3d3d3d', // Dark gray
+          // Dark mode borders - subtle boundaries
           // Usage: dark:border-dark-border
-        }
+        },
       },
     },
   },
