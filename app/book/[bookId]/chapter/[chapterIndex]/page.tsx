@@ -107,14 +107,11 @@ export default async function ChapterPage({
       </FadeIn>
       
       <FadeIn>
-        <div className="mb-8">
+        <div className="mb-8 w-fit">
           <h1 className="mb-2 text-2xl font-bold text-light-text-primary md:text-3xl dark:text-dark-text-primary">
             {chapter.title}
           </h1>
-          <div className="mb-2 text-sm text-light-text-secondary dark:text-dark-text-secondary">
-            Chapter {chapter.index}
-          </div>
-          <div className="h-1 w-24 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary"></div>
+          <div className="h-1 w-full bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary"></div>
         </div>
       </FadeIn>
       

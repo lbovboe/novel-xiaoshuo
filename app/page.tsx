@@ -52,10 +52,10 @@ export default async function Home() {
   const books = await getBooks();
   
   return (
-    <div className="container mx-auto px-4 pb-12 pt-8 md:px-8 md:pt-12">
+    <div className="container mx-auto px-4 pb-12 pt-2 md:px-8 md:pt-4">
       <FadeIn direction="down">
         <h1 className="mb-8 text-center text-3xl font-bold text-light-text-primary md:text-4xl dark:text-dark-text-primary">
-          Novel Collection
+          本人最爱小说
         </h1>
       </FadeIn>
       

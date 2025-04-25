@@ -30,7 +30,7 @@ const ChapterCard = ({ bookId, index, title }: ChapterCardProps) => {
                 {title}
               </h3>
               <p className="mt-1 text-xs text-light-text-secondary dark:text-dark-text-secondary">
-                Chapter {index}
+                Chapter {index-1}
               </p>
             </div>
           </div>

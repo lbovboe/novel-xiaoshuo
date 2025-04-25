@@ -89,9 +89,9 @@ export default async function BookPage({ params }: { params: { bookId: string } 
   }
   
   return (
-    <div className="container mx-auto px-4 pb-12 md:px-8">
+    <div className="container mx-auto px-4 pb-12 md:px-8 pt-4">
       <FadeIn direction="left">
-        <div className="mb-6">
+        <div className="mb-2">
           <Link 
             href="/" 
             className="group mb-4 inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
@@ -102,51 +102,10 @@ export default async function BookPage({ params }: { params: { bookId: string } 
         </div>
       </FadeIn>
       
-      <FadeIn>
-        <div className="mb-10 grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="md:col-span-1">
-            <div className="overflow-hidden rounded-lg shadow-lg">
-              <div className="relative aspect-[2/3] w-full overflow-hidden">
-                <Image 
-                  src={book.coverImage}
-                  alt={book.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-            </div>
-          </div>
-          
-          <div className="md:col-span-2">
-            <h1 className="mb-3 text-3xl font-bold text-light-text-primary dark:text-dark-text-primary">
-              {book.title}
-            </h1>
-            <p className="mb-6 text-light-text-secondary dark:text-dark-text-secondary">
-              {book.description}
-            </p>
-            
-            <div className="rounded-lg bg-light-paper p-4 shadow-md dark:bg-dark-paper">
-              <h2 className="mb-4 text-xl font-semibold text-light-text-primary dark:text-dark-text-primary">
-                Book Details
-              </h2>
-              <div className="space-y-2 text-light-text-secondary dark:text-dark-text-secondary">
-                <p>Total Chapters: <span className="font-medium text-light-primary dark:text-dark-primary">{book.chapters.length}</span></p>
-                <p>Status: <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-400">Complete</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </FadeIn>
-      
       <FadeIn direction="up" delay={0.2}>
-        <h2 className="mb-6 text-2xl font-bold text-light-text-primary dark:text-dark-text-primary">
-          Chapters
-        </h2>
-        
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {book.chapters.map((chapter) => (
-            chapter.index !== 0 && (
+          {book.chapters.map((chapter,i) => (
+            i!== 0 && (
               <ChapterCard 
                 key={chapter.index}
                 bookId={book.id}
