@@ -1,0 +1,114 @@
+/* Reset CSS
+   Based on Eric Meyer's CSS Reset v2.0 | 20110126
+   License: none (public domain)
+   
+   This reset CSS aims to provide a consistent starting point for styling across different browsers
+   by removing default margins, paddings, and other browser-specific styles.
+*/
+
+/* Reset default styles for all elements */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	box-sizing: border-box;
+	/* Commented out background color */
+	/* background: #131212; */
+	/* Commented out vertical alignment */
+	/*vertical-align: baseline;*/
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* Body styles */
+body {
+	/* Commented out line height */
+	/* line-height: 1; */
+	background: #FFF;
+	color: #333333;
+	font-size: 14px;
+  font-family: system-ui;
+	/* font-family: 'PingFang SC'; */
+}
+
+/* Remove list styles */
+ol, ul, li {
+	list-style: none;
+}
+
+/* Remove quote styles */
+blockquote, q {
+	quotes: none;
+} 
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* Commented out table styles */
+/*table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+
+/* Additional reset styles */
+img { border: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+select, input { vertical-align: middle; }
+
+/* Utility classes */
+/* Clear floats */
+.clear {
+	display: block !important;
+	clear: both !important;
+	float: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	overflow: hidden;
+}
+
+/* Clearfix for containing floats */
+.clearfix { zoom: 1; }
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+/* Spacer for adding vertical space */
+.spacer {
+	clear: both;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+}
+
+/* Default link styles */
+a {
+	/* color: #fff; */
+	text-decoration: none;
+}
+

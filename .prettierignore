@@ -1,0 +1,19 @@
+# Build files
+build/
+dist/
+coverage/
+
+# Node modules
+node_modules/
+
+# Specific file types
+*.min.js
+*.min.css
+*.css
+
+# Specific files
+my-messy-file.js
+generated-file.ts
+
+# Specific folders
+legacy-code/**/*
