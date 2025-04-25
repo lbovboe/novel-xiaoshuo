@@ -13,7 +13,7 @@ type ChapterData = {
 // Get chapter content by index
 async function getChapterContent(chapterIndex: number): Promise<ChapterData | null> {
   try {
-    const filePath = path.join(process.cwd(), `output/重生之最强剑神最新章节/chapter-${chapterIndex}.json`);
+    const filePath = path.join(process.cwd(), `output/重生之最强剑神最新章节/chapter-000${chapterIndex}.json`);
 
     // Read file content
     const fileContent = fs.readFileSync(filePath, 'utf8');

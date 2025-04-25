@@ -61,7 +61,7 @@ export default async function Home() {
             className="rounded-lg border border-gray-200 bg-white p-4 shadow-md transition-shadow hover:border-blue-500 hover:shadow-lg"
           >
             <div className="text-lg font-medium text-gray-900">
-              Chapter {chapter.index}: {chapter.title}
+               {chapter.title}
             </div>
           </Link>
         ))}
