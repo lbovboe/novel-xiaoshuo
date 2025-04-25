@@ -19,7 +19,14 @@ const Navbar = () => {
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Logo */}
 
-        <Image src="/icon1.png" alt="Logo" width={40} height={40} />
+        <Image
+          src="/icon1.png"
+          alt="Logo"
+          width={40}
+          height={40}
+          className="rounded-full"
+          style={{ objectFit: 'contain' }}
+        />
         {/* Navigation chips */}
         <div className="flex items-center gap-2">
           {navItems.map((item) => (
