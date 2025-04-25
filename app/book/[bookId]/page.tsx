@@ -72,7 +72,7 @@ async function getBookData(bookId: string): Promise<Book | null> {
 }
 
 export default async function BookPage({ params }: { params: { bookId: string } }) {
-  const bookId = decodeURIComponent(params.bookId);
+  const bookId = decodeURIComponent((await params).bookId);
   const book = await getBookData(bookId);
   
   if (!book) {

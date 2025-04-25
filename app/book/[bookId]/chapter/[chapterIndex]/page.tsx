@@ -73,8 +73,8 @@ export default async function ChapterPage({
 }: { 
   params: { bookId: string; chapterIndex: string } 
 }) {
-  const bookId = decodeURIComponent(params.bookId);
-  const chapterIndex = parseInt(params.chapterIndex);
+  const bookId = decodeURIComponent((await params).bookId);
+  const chapterIndex = parseInt((await params).chapterIndex);
   const chapter = await getChapterContent(bookId, chapterIndex);
   
   // Check if previous and next chapters exist
