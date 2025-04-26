@@ -9,7 +9,7 @@ const sleep = promisify(setTimeout);
 // Configuration
 const config = {
   // Novel URL - replace with the URL of the novel you want to download
-  novelUrl: 'https://www.piaotia.com/html/10/10099/',
+  novelUrl: 'https://www.piaotia.com/html/9/9835/',
   // Output directory
   outputDir: './output',
   // Delay between requests (in ms) to avoid overloading the server

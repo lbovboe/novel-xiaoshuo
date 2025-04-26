@@ -3,7 +3,7 @@
   "short_name": "小说",
   "description": "本人最爱小说",
   "start_url": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "orientation": "portrait",
