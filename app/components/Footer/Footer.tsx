@@ -29,7 +29,7 @@ const Footer = () => {
             - text-light/dark-text-secondary: Theme-based text color
           */}
           <div className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-            © {new Date().getFullYear()} 本人最爱小说. All rights reserved.
+            © {new Date().getFullYear()} 本人最爱小说. 版权所有.
           </div>
 
           {/* 
@@ -48,13 +48,13 @@ const Footer = () => {
               href="#"
               className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
             >
-              Privacy Policy
+              隐私政策
             </a>
             <a
               href="#"
               className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
             >
-              Terms of Service
+              服务条款
             </a>
           </div>
         </div>

@@ -15,19 +15,17 @@ export default async function BookPage({ params }: { params: Promise<{ bookId: s
   const resolvedParams = await params;
   const bookId = decodeURIComponent(resolvedParams.bookId);
   const book = await getBookData(bookId);
-  
+
   if (!book) {
     return (
       <div className="container mx-auto p-4 text-center">
-        <h1 className="mb-4 text-2xl font-bold text-light-text-primary dark:text-dark-text-primary">
-          Book not found
-        </h1>
+        <h1 className="mb-4 text-2xl font-bold text-light-text-primary dark:text-dark-text-primary">未找到书籍</h1>
         <Link href="/" className="text-light-primary hover:underline dark:text-dark-primary">
-          Back to Books
+          返回书籍列表
         </Link>
       </div>
     );
   }
-  
+
   return <BookDetail book={book} />;
-} 
+}

@@ -53,7 +53,7 @@ export default function ChapterDetail({
             className="group mb-4 inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
           >
             <span className="mr-2 transform transition-transform duration-300 group-hover:-translate-x-1">←</span>
-            {convertText('Back to Chapter List')}
+            {convertText('返回章节列表')}
           </Link>
         </div>
       </FadeIn>
@@ -80,7 +80,7 @@ export default function ChapterDetail({
               href={`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex - 1}`}
               className="rounded bg-light-paper px-4 py-2 text-light-text-primary shadow-md transition-all hover:bg-light-primary/10 hover:text-light-primary dark:bg-dark-paper dark:text-dark-text-primary dark:hover:bg-dark-primary/10 dark:hover:text-dark-primary"
             >
-              {convertText('← Previous Chapter')}
+              {convertText('← 上一章')}
             </Link>
           </div>
         )}
@@ -93,7 +93,7 @@ export default function ChapterDetail({
               href={`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex + 1}`}
               className="rounded bg-light-paper px-4 py-2 text-light-text-primary shadow-md transition-all hover:bg-light-primary/10 hover:text-light-primary dark:bg-dark-paper dark:text-dark-text-primary dark:hover:bg-dark-primary/10 dark:hover:text-dark-primary"
             >
-              {convertText('Next Chapter →')}
+              {convertText('下一章 →')}
             </Link>
           </div>
         )}
