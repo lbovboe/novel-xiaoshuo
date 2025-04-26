@@ -40,7 +40,7 @@ const Navbar = () => {
             <span className="text-xl font-bold text-white">书</span>
           )}
         </Link>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2">
           <SettingsToggle />
           <ThemeToggle />
         </div>
