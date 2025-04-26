@@ -56,7 +56,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     if (language === 'traditional') {
       return convertToTraditional(text);
     }
-    return text; // already simplified
+    if (language === 'simplified') {
+      return convertToSimplified(text);
+    }
+    return text;
   };
 
   return (
