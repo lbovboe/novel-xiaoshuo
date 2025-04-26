@@ -16,7 +16,7 @@ const ChapterCard = ({ bookId, index, title }: ChapterCardProps) => {
           <div className="relative overflow-hidden">
             <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-light-primary to-light-secondary opacity-60 dark:from-dark-primary dark:to-dark-secondary" />
             <div className="pl-3">
-              <h3 className="font-medium text-light-text-primary dark:text-dark-text-primary">{title}</h3>
+              <h3 className="font-medium text-light-text-primary dark:text-dark-text-primary truncate">{title}</h3>
               <p className="mt-1 text-xs text-light-text-secondary dark:text-dark-text-secondary">第 {index - 1} 章</p>
             </div>
           </div>
