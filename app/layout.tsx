@@ -1,15 +1,57 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { ThemeProvider } from '@/app/context/ThemeContext';
 import { SettingsProvider } from '@/app/context/SettingsContext';
 import MotionConfig from '@/app/components/Animation/MotionConfig';
+import PWARegister from '@/app/pwa';
 import './globals.css';
 import './reset.css';
 import Footer from '@/app/components/Footer/Footer';
 import Navbar from '@/app/components/Headers/NavBar';
+
+// Define viewport for the application
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#000000',
+};
+
 // Define metadata for the application
 export const metadata: Metadata = {
   title: '全本小说',
   description: '本人最爱小说',
+  manifest: '/manifest.json',
+  applicationName: '全本小说',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: '全本小说',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    title: '全本小说',
+    description: '本人最爱小说',
+  },
+  icons: {
+    icon: [
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icons/icon-72x72.png', sizes: '72x72', type: 'image/png' },
+      { url: '/icons/icon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/icons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
+      { url: '/icons/icon-144x144.png', sizes: '144x144', type: 'image/png' },
+      { url: '/icons/icon-152x152.png', sizes: '152x152', type: 'image/png' },
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-384x384.png', sizes: '384x384', type: 'image/png' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
 };
 
 // Root layout component that wraps all pages
@@ -37,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Navbar />
               <main className="flex-grow">{children}</main>
               <Footer />
+              <PWARegister />
             </MotionConfig>
           </SettingsProvider>
         </ThemeProvider>
