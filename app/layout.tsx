@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/app/context/ThemeContext';
+import { SettingsProvider } from '@/app/context/SettingsContext';
 import MotionConfig from '@/app/components/Animation/MotionConfig';
 import './globals.css';
 import './reset.css';
@@ -29,20 +30,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           - dark:via-dark-background-gradient-via
           - dark:to-dark-background-gradient-end
       */}
-      <body className="min-h-screen flex flex-col 
-        bg-gradient-to-br 
-        from-light-background-gradient-start 
-        via-light-background-gradient-via 
-        to-light-background-gradient-end
-        dark:from-dark-background-gradient-start 
-        dark:via-dark-background-gradient-via 
-        dark:to-dark-background-gradient-end">
+      <body className="flex min-h-screen flex-col bg-gradient-to-br from-light-background-gradient-start via-light-background-gradient-via to-light-background-gradient-end dark:from-dark-background-gradient-start dark:via-dark-background-gradient-via dark:to-dark-background-gradient-end">
         <ThemeProvider>
-          <MotionConfig>
-            <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </MotionConfig>
+          <SettingsProvider>
+            <MotionConfig>
+              <Navbar />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </MotionConfig>
+          </SettingsProvider>
         </ThemeProvider>
       </body>
     </html>
