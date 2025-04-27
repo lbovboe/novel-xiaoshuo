@@ -11,7 +11,7 @@ if (!self.define) {
         } else (e = n), importScripts(n), s();
       }).then(() => {
         let e = s[n];
-        if (!e) throw new Error(`Module ${n} didn’t register its module`);
+        if (!e) throw new Error(`Module ${n} didn't register its module`);
         return e;
       })
   );
@@ -73,6 +73,11 @@ define(['./workbox-4754cb34'], function (e) {
         { url: '/icons/icon-96x96.png', revision: '738a385a0c8618a9c8d6fa0c58be4d3b' },
         { url: '/icons/icon-maskable-512x512.png', revision: '794515e5ba05e73c1a81b74f669f0544' },
         { url: '/images/book-cover.png', revision: '6a57486569907c7c3889646db88d43ce' },
+        { url: '/images/novel/超神玩家.png', revision: '1094cf2aa1a22688f7a1de23b275e3f1' },
+        { url: '/images/novel/重生之最强剑神.png', revision: '6ff933014c5958785d818186e9d5d6ff' },
+        { url: '/images/novel/我有一座冒险屋.png', revision: '187c98bb610b1153128d959035eb9296' },
+        { url: '/images/novel/第一序列.png', revision: 'a823de51d516f2cc34576f12764cda25' },
+        { url: '/images/novel/凡人修仙传.png', revision: '0c6047cb246bf9100a22edc212244ca4' },
         { url: '/images/logo.png', revision: '6a57486569907c7c3889646db88d43ce' },
         { url: '/manifest.json', revision: '48fdb6d03c96a42c75856b3d0d23d6f2' },
       ],
