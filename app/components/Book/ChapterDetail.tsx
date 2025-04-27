@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import FadeIn from '@/app/components/tools/Animation/FadeIn';
 import { ChapterData } from '@/app/lib/chapter';
 import { useSettings } from '@/app/context/SettingsContext';
@@ -42,7 +43,39 @@ export default function ChapterDetail({
   nextChapterExists,
   chapterIndex,
 }: ChapterDetailProps) {
-  const { fontSize, convertText } = useSettings();
+  const { fontSize, convertText, autoNext } = useSettings();
+  const router = useRouter();
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!autoNext || !nextChapterExists) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // When footer is visible, set a timer to navigate to the next chapter
+            const timer = setTimeout(() => {
+              router.push(`/book/${encodeURIComponent(bookId)}/chapter/${chapterIndex + 1}`);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the footer is visible
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current);
+      }
+    };
+  }, [autoNext, nextChapterExists, bookId, chapterIndex, router]);
 
   return (
     <div className="container mx-auto max-w-4xl px-4 pb-12 md:px-8 md:pt-4">
@@ -73,7 +106,7 @@ export default function ChapterDetail({
         </div>
       </div>
 
-      <div className="mt-8 flex justify-between">
+      <div ref={footerRef} className="mt-8 flex justify-between">
         {prevChapterExists && (
           <div className="transform transition-transform duration-300 hover:-translate-x-1">
             <Link
@@ -98,6 +131,12 @@ export default function ChapterDetail({
           </div>
         )}
       </div>
+
+      {autoNext && nextChapterExists && (
+        <div className="mt-4 text-center text-sm text-light-text-secondary dark:text-dark-text-secondary">
+          {convertText('滚动到底部将在1秒后自动前往下一章')}
+        </div>
+      )}
     </div>
   );
 }

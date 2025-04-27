@@ -1,7 +1,7 @@
 'use client';
 
 import { useSettings } from '@/app/context/SettingsContext';
-import { FontSizeOption, LanguageOption } from '@/app/types/settings';
+import { FontSizeOption, LanguageOption, AutoNextOption } from '@/app/types/settings';
 import { useEffect, useRef } from 'react';
 import { m } from 'framer-motion';
 
@@ -10,7 +10,7 @@ interface SettingsModalProps {
 }
 
 const SettingsModal = ({ onClose }: SettingsModalProps) => {
-  const { fontSize, language, setFontSize, setLanguage } = useSettings();
+  const { fontSize, language, autoNext, setFontSize, setLanguage, setAutoNext } = useSettings();
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close modal when clicking outside
@@ -47,6 +47,10 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
 
   const handleLanguageChange = (lang: LanguageOption) => {
     setLanguage(lang);
+  };
+
+  const handleAutoNextChange = () => {
+    setAutoNext(!autoNext);
   };
 
   return (
@@ -111,7 +115,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
           </div>
         </div>
 
-        <div>
+        <div className="mb-8">
           <h3 className="mb-3 font-medium text-light-text-primary dark:text-dark-text-primary">字体语言</h3>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <m.button
@@ -139,6 +143,28 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
               繁體中文
             </m.button>
           </div>
+        </div>
+
+        <div>
+          <h3 className="mb-3 font-medium text-light-text-primary dark:text-dark-text-primary">自动翻页</h3>
+          <div className="flex items-center justify-between rounded-lg bg-light-background/80 px-4 py-3 dark:bg-dark-background/80">
+            <span className="text-light-text-primary dark:text-dark-text-primary">自动前往下一章</span>
+            <button
+              onClick={handleAutoNextChange}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                autoNext ? 'bg-light-primary dark:bg-dark-primary' : 'bg-gray-400 dark:bg-gray-600'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  autoNext ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+          <p className="mt-2 text-xs text-light-text-secondary dark:text-dark-text-secondary">
+            启用后，当滚动到章节末尾时，将在1秒后自动跳转到下一章
+          </p>
         </div>
       </m.div>
     </m.div>
