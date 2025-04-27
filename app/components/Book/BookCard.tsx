@@ -23,7 +23,7 @@ const BookCard = ({ id, title, description, coverImage, chapterCount }: BookCard
     >
       <Link href={`/book/${encodeURIComponent(id)}`} className="block h-full">
         <div className="h-full overflow-hidden rounded-lg bg-light-paper shadow-md transition-all duration-300 hover:shadow-xl dark:bg-dark-paper dark:shadow-gray-800">
-          <div className="relative h-60 w-full overflow-hidden">
+          <div className="relative h-80 w-full overflow-hidden">
             <Image src={coverImage} alt={title} fill className="transition-transform duration-500 hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-light-background-gradient-start/80 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100 dark:from-dark-background-gradient-start/80" />
           </div>
