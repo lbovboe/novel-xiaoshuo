@@ -7,10 +7,7 @@ import './globals.css';
 import './reset.css';
 import Footer from '@/app/components/Footer/Footer';
 import Navbar from '@/app/components/Headers/NavBar';
-import dynamic from 'next/dynamic';
-
-// Dynamically import ThemeMetadata to avoid SSR issues with window/document
-const ThemeMetadata = dynamic(() => import('@/app/components/ThemeMetadata'), { ssr: false });
+import ClientThemeWrapper from '@/app/components/ClientThemeWrapper';
 
 // Define viewport for the application
 export const viewport: Viewport = {
@@ -79,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-screen flex-col bg-gradient-to-br from-light-background-gradient-start via-light-background-gradient-via to-light-background-gradient-end dark:from-dark-background-gradient-start dark:via-dark-background-gradient-via dark:to-dark-background-gradient-end">
         <ThemeProvider>
           <SettingsProvider>
-            <ThemeMetadata />
+            <ClientThemeWrapper />
             <MotionConfig>
               <Navbar />
               <main className="flex-grow">{children}</main>
