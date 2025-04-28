@@ -16,6 +16,22 @@ export default function BookDetail({ book }: BookDetailProps) {
   const { convertText } = useSettings();
   const chaptersContainerRef = useRef<HTMLDivElement>(null);
   const [initialScrollDone, setInitialScrollDone] = useState(false);
+  const [pageReady, setPageReady] = useState(false);
+
+  // Ensure page starts at the top when component mounts
+  useEffect(() => {
+    // Force scroll to top immediately
+    window.scrollTo(0, 0);
+
+    // And again after a short delay to ensure it takes effect
+    const topScrollTimeout = setTimeout(() => {
+      window.scrollTo(0, 0);
+      // Mark the page as ready for chapter navigation
+      setPageReady(true);
+    }, 100);
+
+    return () => clearTimeout(topScrollTimeout);
+  }, []);
 
   useEffect(() => {
     // Try to load book data from localStorage
@@ -24,6 +40,7 @@ export default function BookDetail({ book }: BookDetailProps) {
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
+        console.log('Loaded chapter data:', parsedData.currentChapter);
         setCurrentChapter(parsedData.currentChapter);
       } catch (e) {
         console.error('Error parsing stored book data:', e);
@@ -39,35 +56,44 @@ export default function BookDetail({ book }: BookDetailProps) {
     }
   }, [book.id, book.chapters]);
 
-  // Scroll to active chapter when currentChapter is set
+  // Scroll to active chapter when currentChapter is set and page is ready
   useEffect(() => {
-    if (!initialScrollDone && currentChapter && chaptersContainerRef.current) {
-      // Use requestAnimationFrame to ensure DOM is updated before scrolling
-      requestAnimationFrame(() => {
-        const container = chaptersContainerRef.current;
-        if (!container) return;
+    if (!initialScrollDone && currentChapter && chaptersContainerRef.current && pageReady) {
+      console.log('Preparing to scroll to chapter:', currentChapter);
+      // Add a longer delay to ensure animations are complete before scrolling
+      const scrollTimeout = setTimeout(() => {
+        // Ensure we're starting from the top before any chapter navigation
+        window.scrollTo(0, 0);
 
-        const activeChapterElement = container.querySelector(`[data-chapter="${currentChapter}"]`);
+        setTimeout(() => {
+          const container = chaptersContainerRef.current;
+          if (!container) return;
 
-        if (activeChapterElement) {
-          // Get the position of the element relative to the container
-          const containerRect = container.getBoundingClientRect();
-          const elementRect = activeChapterElement.getBoundingClientRect();
+          // Check for duplicate chapter elements
+          const allChapterElements = container.querySelectorAll(`[data-chapter="${currentChapter}"]`);
+          if (allChapterElements.length > 1) {
+            console.warn(
+              `Found ${allChapterElements.length} elements with data-chapter="${currentChapter}". This may cause scrolling issues.`
+            );
+          }
 
-          // Calculate scroll position to center the element in the viewport
-          const scrollTop = elementRect.top - containerRect.top - window.innerHeight / 2 + elementRect.height / 2;
+          const activeChapterElement = container.querySelector(`[data-chapter="${currentChapter}"]`);
+          console.log('Found chapter element:', !!activeChapterElement);
 
-          // Scroll to the element with smooth behavior
-          window.scrollTo({
-            top: window.scrollY + scrollTop,
-            behavior: 'smooth',
-          });
+          if (activeChapterElement) {
+            activeChapterElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
 
-          setInitialScrollDone(true);
-        }
-      });
+            setInitialScrollDone(true);
+          }
+        }, 100);
+      }, 800); // Longer timeout to ensure all animations and renders are complete
+
+      return () => clearTimeout(scrollTimeout);
     }
-  }, [currentChapter, initialScrollDone]);
+  }, [currentChapter, initialScrollDone, book.chapters, pageReady]);
 
   // Function to navigate directly to the last read chapter
   const goToLastReadChapter = () => {
