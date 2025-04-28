@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import FadeIn from '@/app/components/tools/Animation/FadeIn';
 import { ChapterData } from '@/app/lib/chapter';
 import { useSettings } from '@/app/context/SettingsContext';
+import { Book } from '@/app/lib/book';
 
 interface ChapterDetailProps {
   bookId: string;
@@ -13,6 +14,7 @@ interface ChapterDetailProps {
   prevChapterExists: boolean;
   nextChapterExists: boolean;
   chapterIndex: number;
+  bookData: Book | null;
 }
 
 // Format content with proper paragraph breaks
@@ -42,6 +44,7 @@ export default function ChapterDetail({
   prevChapterExists,
   nextChapterExists,
   chapterIndex,
+  bookData,
 }: ChapterDetailProps) {
   const { fontSize, convertText, autoNext } = useSettings();
   const router = useRouter();
@@ -58,36 +61,18 @@ export default function ChapterDetail({
         bookData.currentChapter = chapterIndex;
         localStorage.setItem(storageKey, JSON.stringify(bookData));
       } else {
-        // Fetch book data to get all chapters
-        fetch(`/api/books/${encodeURIComponent(bookId)}`)
-          .then((response) => {
-            if (!response.ok) throw new Error('Failed to fetch book data');
-            return response.json();
-          })
-          .then((bookData) => {
-            // Create new book data with actual chapters
-            const newBookData = {
-              bookId,
-              currentChapter: chapterIndex,
-              chapters: bookData.chapters,
-            };
-            localStorage.setItem(storageKey, JSON.stringify(newBookData));
-          })
-          .catch((error) => {
-            console.error('Error fetching book data for localStorage:', error);
-            // Fallback to creating placeholder data
-            const newBookData = {
-              bookId,
-              currentChapter: chapterIndex,
-              chapters: [{ index: chapterIndex, title: chapter.title }],
-            };
-            localStorage.setItem(storageKey, JSON.stringify(newBookData));
-          });
+        // Use server-fetched book data instead of API call
+        const newBookData = {
+          bookId,
+          currentChapter: chapterIndex,
+          chapters: bookData?.chapters || [{ index: chapterIndex, title: chapter.title }],
+        };
+        localStorage.setItem(storageKey, JSON.stringify(newBookData));
       }
     } catch (e) {
       console.error('Error saving chapter data to localStorage:', e);
     }
-  }, [bookId, chapterIndex, chapter]);
+  }, [bookId, chapterIndex, chapter, bookData]);
 
   useEffect(() => {
     if (!autoNext || !nextChapterExists) return;

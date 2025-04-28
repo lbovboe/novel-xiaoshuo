@@ -63,10 +63,9 @@ const BookMenuModal = ({ onClose }: BookMenuModalProps) => {
           setLoading(false);
         } catch (e) {
           console.error('Error parsing stored book data:', e);
-          fetchBookData(bookId, currentChapter);
         }
       } else {
-        fetchBookData(bookId, currentChapter);
+        console.log('No storedData');
       }
     }
   }, [pathname]);
@@ -101,57 +100,6 @@ const BookMenuModal = ({ onClose }: BookMenuModalProps) => {
       });
     }
   }, [loading, bookData, initialScrollDone]);
-
-  // Fetch book data from the server API
-  const fetchBookData = async (bookId: string, currentChapter: number) => {
-    setLoading(true);
-    try {
-      // Fetch book data from the API
-      const response = await fetch(`/api/books/${encodeURIComponent(bookId)}`);
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch book data');
-      }
-
-      const bookDataFromApi = await response.json();
-
-      // Store the book data in the format we need
-      const data: BookData = {
-        bookId,
-        currentChapter,
-        chapters: bookDataFromApi.chapters,
-      };
-
-      // Save to localStorage
-      localStorage.setItem(`book_data_${bookId}`, JSON.stringify(data));
-      setBookData(data);
-    } catch (error) {
-      console.error('Error fetching book data:', error);
-      // If API fails, create fallback data
-      createFallbackBookData(bookId, currentChapter);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Create fallback book data when API fails
-  const createFallbackBookData = (bookId: string, currentChapter: number) => {
-    // Create simple placeholder data
-    const chapters = Array.from({ length: 50 }, (_, i) => ({
-      index: i,
-      title: `第${i + 1}章`,
-    }));
-
-    const data: BookData = {
-      bookId,
-      currentChapter,
-      chapters,
-    };
-
-    // Save to localStorage
-    localStorage.setItem(`book_data_${bookId}`, JSON.stringify(data));
-    setBookData(data);
-  };
 
   // Close modal when clicking outside
   useEffect(() => {
