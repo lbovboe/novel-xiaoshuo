@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import FadeIn from '@/app/components/tools/Animation/FadeIn';
 import ChapterCard from '@/app/components/Book/ChapterCard';
 import { Book } from '@/app/lib/book';
 import { useSettings } from '@/app/context/SettingsContext';
@@ -16,21 +15,10 @@ export default function BookDetail({ book }: BookDetailProps) {
   const { convertText } = useSettings();
   const chaptersContainerRef = useRef<HTMLDivElement>(null);
   const [initialScrollDone, setInitialScrollDone] = useState(false);
-  const [pageReady, setPageReady] = useState(false);
 
-  // Ensure page starts at the top when component mounts
+  // Simple one-time scroll to top on mount
   useEffect(() => {
-    // Force scroll to top immediately
     window.scrollTo(0, 0);
-
-    // And again after a short delay to ensure it takes effect
-    const topScrollTimeout = setTimeout(() => {
-      window.scrollTo(0, 0);
-      // Mark the page as ready for chapter navigation
-      setPageReady(true);
-    }, 100);
-
-    return () => clearTimeout(topScrollTimeout);
   }, []);
 
   useEffect(() => {
@@ -56,44 +44,25 @@ export default function BookDetail({ book }: BookDetailProps) {
     }
   }, [book.id, book.chapters]);
 
-  // Scroll to active chapter when currentChapter is set and page is ready
+  // Scroll to active chapter immediately when set
   useEffect(() => {
-    if (!initialScrollDone && currentChapter && chaptersContainerRef.current && pageReady) {
-      console.log('Preparing to scroll to chapter:', currentChapter);
-      // Add a longer delay to ensure animations are complete before scrolling
-      const scrollTimeout = setTimeout(() => {
-        // Ensure we're starting from the top before any chapter navigation
-        window.scrollTo(0, 0);
+    if (!initialScrollDone && currentChapter && chaptersContainerRef.current) {
+      console.log('Scrolling to chapter:', currentChapter);
 
-        setTimeout(() => {
-          const container = chaptersContainerRef.current;
-          if (!container) return;
+      const container = chaptersContainerRef.current;
+      const activeChapterElement = container.querySelector(`[data-chapter="${currentChapter}"]`);
 
-          // Check for duplicate chapter elements
-          const allChapterElements = container.querySelectorAll(`[data-chapter="${currentChapter}"]`);
-          if (allChapterElements.length > 1) {
-            console.warn(
-              `Found ${allChapterElements.length} elements with data-chapter="${currentChapter}". This may cause scrolling issues.`
-            );
-          }
+      if (activeChapterElement) {
+        // Immediately scroll to the element
+        activeChapterElement.scrollIntoView({
+          behavior: 'auto',
+          block: 'center',
+        });
 
-          const activeChapterElement = container.querySelector(`[data-chapter="${currentChapter}"]`);
-          console.log('Found chapter element:', !!activeChapterElement);
-
-          if (activeChapterElement) {
-            activeChapterElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-            });
-
-            setInitialScrollDone(true);
-          }
-        }, 100);
-      }, 800); // Longer timeout to ensure all animations and renders are complete
-
-      return () => clearTimeout(scrollTimeout);
+        setInitialScrollDone(true);
+      }
     }
-  }, [currentChapter, initialScrollDone, book.chapters, pageReady]);
+  }, [currentChapter, initialScrollDone]);
 
   // Function to navigate directly to the last read chapter
   const goToLastReadChapter = () => {
@@ -104,44 +73,40 @@ export default function BookDetail({ book }: BookDetailProps) {
 
   return (
     <div className="container mx-auto px-4 pb-12 pt-4 md:px-8">
-      <FadeIn direction="left">
-        <div className="mb-4 flex items-center justify-between">
-          <Link
-            href="/"
-            className="group inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+      <div className="mb-4 flex items-center justify-between">
+        <Link
+          href="/"
+          className="group inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+        >
+          <span className="mr-2 transform transition-transform duration-300 group-hover:-translate-x-1">←</span>
+          {convertText ? convertText('返回书籍列表') : '返回书籍列表'}
+        </Link>
+
+        {currentChapter && (
+          <button
+            onClick={goToLastReadChapter}
+            className="rounded-lg bg-light-primary px-4 py-2 text-sm text-white shadow-md transition-all hover:bg-light-primary/90 dark:bg-dark-primary dark:hover:bg-dark-primary/90"
           >
-            <span className="mr-2 transform transition-transform duration-300 group-hover:-translate-x-1">←</span>
-            {convertText ? convertText('返回书籍列表') : '返回书籍列表'}
-          </Link>
+            {convertText ? convertText('继续阅读') : '继续阅读'}
+          </button>
+        )}
+      </div>
 
-          {currentChapter && (
-            <button
-              onClick={goToLastReadChapter}
-              className="rounded-lg bg-light-primary px-4 py-2 text-sm text-white shadow-md transition-all hover:bg-light-primary/90 dark:bg-dark-primary dark:hover:bg-dark-primary/90"
-            >
-              {convertText ? convertText('继续阅读') : '继续阅读'}
-            </button>
-          )}
-        </div>
-      </FadeIn>
-
-      <FadeIn direction="up" delay={0.2}>
-        <div ref={chaptersContainerRef} className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {book.chapters.map(
-            (chapter, i) =>
-              i !== 0 && (
-                <div key={chapter.index} data-chapter={chapter.index}>
-                  <ChapterCard
-                    bookId={book.id}
-                    index={chapter.index}
-                    title={chapter.title}
-                    isActive={currentChapter === chapter.index}
-                  />
-                </div>
-              )
-          )}
-        </div>
-      </FadeIn>
+      <div ref={chaptersContainerRef} className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {book.chapters.map(
+          (chapter, i) =>
+            i !== 0 && (
+              <div key={chapter.index} data-chapter={chapter.index}>
+                <ChapterCard
+                  bookId={book.id}
+                  index={chapter.index}
+                  title={chapter.title}
+                  isActive={currentChapter === chapter.index}
+                />
+              </div>
+            )
+        )}
+      </div>
     </div>
   );
 }
