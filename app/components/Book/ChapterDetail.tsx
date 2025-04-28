@@ -48,6 +48,48 @@ export default function ChapterDetail({
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Save current chapter to localStorage
+    try {
+      const storageKey = `book_data_${bookId}`;
+      const existingData = localStorage.getItem(storageKey);
+
+      if (existingData) {
+        const bookData = JSON.parse(existingData);
+        bookData.currentChapter = chapterIndex;
+        localStorage.setItem(storageKey, JSON.stringify(bookData));
+      } else {
+        // Fetch book data to get all chapters
+        fetch(`/api/books/${encodeURIComponent(bookId)}`)
+          .then((response) => {
+            if (!response.ok) throw new Error('Failed to fetch book data');
+            return response.json();
+          })
+          .then((bookData) => {
+            // Create new book data with actual chapters
+            const newBookData = {
+              bookId,
+              currentChapter: chapterIndex,
+              chapters: bookData.chapters,
+            };
+            localStorage.setItem(storageKey, JSON.stringify(newBookData));
+          })
+          .catch((error) => {
+            console.error('Error fetching book data for localStorage:', error);
+            // Fallback to creating placeholder data
+            const newBookData = {
+              bookId,
+              currentChapter: chapterIndex,
+              chapters: [{ index: chapterIndex, title: chapter.title }],
+            };
+            localStorage.setItem(storageKey, JSON.stringify(newBookData));
+          });
+      }
+    } catch (e) {
+      console.error('Error saving chapter data to localStorage:', e);
+    }
+  }, [bookId, chapterIndex, chapter]);
+
+  useEffect(() => {
     if (!autoNext || !nextChapterExists) return;
 
     const observer = new IntersectionObserver(
