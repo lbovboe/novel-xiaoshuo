@@ -78,15 +78,12 @@ const BookMenuModal = ({ onClose }: BookMenuModalProps) => {
     const activeChapterElement = chaptersContainerRef.current.querySelector('[data-active="true"]');
 
     if (activeChapterElement) {
-      // Calculate position to center the element
-      const containerHeight = chaptersContainerRef.current.clientHeight;
-      const elementPosition =
-        activeChapterElement.getBoundingClientRect().top - chaptersContainerRef.current.getBoundingClientRect().top;
-      const elementHeight = activeChapterElement.clientHeight;
-      const centerPosition = elementPosition - containerHeight / 2 + elementHeight / 2;
+      // Use scrollIntoView instead of manual calculation which may be affected by device differences
+      activeChapterElement.scrollIntoView({
+        behavior: 'auto', // Use 'auto' instead of 'smooth' for immediate scroll
+        block: 'center', // Center the element in the visible area
+      });
 
-      // Set the scroll position immediately
-      chaptersContainerRef.current.scrollTop = centerPosition;
       setInitialScrollDone(true);
     }
   };
