@@ -38,7 +38,7 @@ const ChapterCard = ({ bookId, index, title, isActive = false }: ChapterCardProp
               >
                 {title}
               </h3>
-              <p className="mt-1 text-xs text-light-text-secondary dark:text-dark-text-secondary">第 {index - 1} 章</p>
+              {/* <p className="mt-1 text-xs text-light-text-secondary dark:text-dark-text-secondary">第 {index - 1} 章</p> */}
             </div>
           </div>
         </div>

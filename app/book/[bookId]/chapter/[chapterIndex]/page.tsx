@@ -1,11 +1,39 @@
 import React from 'react';
 import Link from 'next/link';
+import { unstable_cache } from 'next/cache';
 import ChapterDetail from '@/app/components/Book/ChapterDetail';
 import { getChapterContent, chapterExists, generateChapterParams } from '@/app/lib/chapter';
 import { getBookData } from '@/app/lib/book';
 
 // Force static generation
 export const dynamic = 'force-static';
+
+// Cache the chapter content fetching
+const getCachedChapterContent = unstable_cache(
+  async (bookId: string, chapterIndex: number) => {
+    return getChapterContent(bookId, chapterIndex);
+  },
+  ['chapter-content'],
+  { revalidate: 3600 } // Cache for 1 hour
+);
+
+// Cache the chapter existence check
+const getCachedChapterExists = unstable_cache(
+  async (bookId: string, chapterIndex: number) => {
+    return chapterExists(bookId, chapterIndex);
+  },
+  ['chapter-exists'],
+  { revalidate: 3600 } // Cache for 1 hour
+);
+
+// Cache book data fetching
+const getCachedBookData = unstable_cache(
+  async (bookId: string) => {
+    return getBookData(bookId);
+  },
+  ['book-data'],
+  { revalidate: 3600 } // Cache for 1 hour
+);
 
 // Use the utility function for generating static params
 export async function generateStaticParams() {
@@ -16,14 +44,14 @@ export default async function ChapterPage({ params }: { params: Promise<{ bookId
   const resolvedParams = await params;
   const bookId = decodeURIComponent(resolvedParams.bookId);
   const chapterIndex = parseInt(resolvedParams.chapterIndex);
-  const chapter = await getChapterContent(bookId, chapterIndex);
 
-  // Fetch book data from server
-  const bookData = await getBookData(bookId);
-
-  // Check if previous and next chapters exist
-  const prevChapterExists = await chapterExists(bookId, chapterIndex - 1);
-  const nextChapterExists = await chapterExists(bookId, chapterIndex + 1);
+  // Fetch all data in parallel
+  const [chapter, bookData, prevChapterExists, nextChapterExists] = await Promise.all([
+    getCachedChapterContent(bookId, chapterIndex),
+    getCachedBookData(bookId),
+    getCachedChapterExists(bookId, chapterIndex - 1),
+    getCachedChapterExists(bookId, chapterIndex + 1),
+  ]);
 
   if (!chapter) {
     return (
