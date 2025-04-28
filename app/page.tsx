@@ -39,7 +39,7 @@ async function getBooks(): Promise<Book[]> {
         id: bookDir,
         title: bookDir, // Using directory name as title
         description: `A captivating novel with ${chapterFiles.length} chapters.`,
-        coverImage: `/images/novel/${bookDir}.png`, // Updated cover image path
+        coverImage: `/images/novel/${bookDir}.jpg`, // Updated cover image path
         chapterCount: chapterFiles.length
       };
     });
