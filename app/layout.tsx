@@ -7,6 +7,7 @@ import './globals.css';
 import './reset.css';
 import Footer from '@/app/components/Footer/Footer';
 import Navbar from '@/app/components/Headers/NavBar';
+import ClientThemeWrapper from '@/app/components/ClientThemeWrapper';
 
 // Define viewport for the application
 export const viewport: Viewport = {
@@ -14,7 +15,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#000000',
+  // Theme color will be handled by ThemeMetadata component
 };
 
 // Define metadata for the application
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   applicationName: '全本小说',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
+    // Status bar style will be managed dynamically by ThemeMetadata
     title: '全本小说',
   },
   formatDetection: {
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-screen flex-col bg-gradient-to-br from-light-background-gradient-start via-light-background-gradient-via to-light-background-gradient-end dark:from-dark-background-gradient-start dark:via-dark-background-gradient-via dark:to-dark-background-gradient-end">
         <ThemeProvider>
           <SettingsProvider>
+            <ClientThemeWrapper />
             <MotionConfig>
               <Navbar />
               <main className="flex-grow">{children}</main>
