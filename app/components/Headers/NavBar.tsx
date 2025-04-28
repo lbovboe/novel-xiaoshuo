@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import ThemeToggle from '../tools/ThemeToggle';
 import SettingsToggle from '../tools/SettingsToggle';
+import BookMenuToggle from '../tools/BookMenuToggle';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
@@ -41,6 +42,7 @@ const Navbar = () => {
           )}
         </Link>
         <div className="flex items-center gap-2">
+          <BookMenuToggle />
           <SettingsToggle />
           <ThemeToggle />
         </div>

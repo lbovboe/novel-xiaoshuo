@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import ChapterDetail from '@/app/components/Book/ChapterDetail';
 import { getChapterContent, chapterExists, generateChapterParams } from '@/app/lib/chapter';
+import { getBookData } from '@/app/lib/book';
 
 // Force static generation
 export const dynamic = 'force-static';
@@ -16,6 +17,9 @@ export default async function ChapterPage({ params }: { params: Promise<{ bookId
   const bookId = decodeURIComponent(resolvedParams.bookId);
   const chapterIndex = parseInt(resolvedParams.chapterIndex);
   const chapter = await getChapterContent(bookId, chapterIndex);
+
+  // Fetch book data from server
+  const bookData = await getBookData(bookId);
 
   // Check if previous and next chapters exist
   const prevChapterExists = await chapterExists(bookId, chapterIndex - 1);
@@ -42,6 +46,7 @@ export default async function ChapterPage({ params }: { params: Promise<{ bookId
       prevChapterExists={prevChapterExists}
       nextChapterExists={nextChapterExists}
       chapterIndex={chapterIndex}
+      bookData={bookData}
     />
   );
 }

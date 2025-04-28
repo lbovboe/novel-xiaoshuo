@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import FadeIn from '@/app/components/tools/Animation/FadeIn';
 import { ChapterData } from '@/app/lib/chapter';
 import { useSettings } from '@/app/context/SettingsContext';
+import { Book } from '@/app/lib/book';
 
 interface ChapterDetailProps {
   bookId: string;
@@ -13,6 +14,7 @@ interface ChapterDetailProps {
   prevChapterExists: boolean;
   nextChapterExists: boolean;
   chapterIndex: number;
+  bookData: Book | null;
 }
 
 // Format content with proper paragraph breaks
@@ -42,10 +44,100 @@ export default function ChapterDetail({
   prevChapterExists,
   nextChapterExists,
   chapterIndex,
+  bookData,
 }: ChapterDetailProps) {
   const { fontSize, convertText, autoNext } = useSettings();
   const router = useRouter();
   const footerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Save current chapter to localStorage
+    try {
+      const storageKey = `book_data_${bookId}`;
+      const existingData = localStorage.getItem(storageKey);
+
+      if (existingData) {
+        const bookData = JSON.parse(existingData);
+        bookData.currentChapter = chapterIndex;
+        bookData.lastAccessed = Date.now(); // Add timestamp for tracking recency
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(bookData));
+        } catch (storageError) {
+          // Handle localStorage quota exceeded
+          if (isQuotaExceededError(storageError)) {
+            clearOldestLocalStorageItems();
+            localStorage.setItem(storageKey, JSON.stringify(bookData));
+          } else {
+            throw storageError;
+          }
+        }
+      } else {
+        // Use server-fetched book data instead of API call
+        const newBookData = {
+          bookId,
+          currentChapter: chapterIndex,
+          chapters: bookData?.chapters || [{ index: chapterIndex, title: chapter.title }],
+          lastAccessed: Date.now(), // Add timestamp for tracking recency
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(newBookData));
+        } catch (storageError) {
+          // Handle localStorage quota exceeded
+          if (isQuotaExceededError(storageError)) {
+            clearOldestLocalStorageItems();
+            localStorage.setItem(storageKey, JSON.stringify(newBookData));
+          } else {
+            throw storageError;
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Error saving chapter data to localStorage:', e);
+    }
+  }, [bookId, chapterIndex, chapter, bookData]);
+
+  // Function to check if error is a quota exceeded error
+  const isQuotaExceededError = (e: any): boolean => {
+    return (
+      e instanceof DOMException &&
+      // everything except Firefox
+      (e.code === 22 ||
+        // Firefox
+        e.code === 1014 ||
+        // test name field too, because code might not be present
+        e.name === 'QuotaExceededError' ||
+        e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
+    );
+  };
+
+  // Function to clear oldest localStorage items until we have enough space
+  const clearOldestLocalStorageItems = () => {
+    // Get all book data keys
+    const bookDataKeys = Object.keys(localStorage).filter((key) => key.startsWith('book_data_'));
+
+    if (bookDataKeys.length > 0) {
+      // Create array of books with their access times
+      const booksWithAccessTimes = bookDataKeys
+        .map((key) => {
+          try {
+            const data = JSON.parse(localStorage.getItem(key) || '{}');
+            return {
+              key,
+              lastAccessed: data.lastAccessed || 0, // Default to 0 if not found
+            };
+          } catch (e) {
+            // If data is corrupted, consider it old
+            return { key, lastAccessed: 0 };
+          }
+        })
+        .sort((a, b) => a.lastAccessed - b.lastAccessed); // Sort oldest first
+
+      // Remove the oldest items (up to 3)
+      for (let i = 0; i < Math.min(2, booksWithAccessTimes.length); i++) {
+        localStorage.removeItem(booksWithAccessTimes[i].key);
+      }
+    }
+  };
 
   useEffect(() => {
     if (!autoNext || !nextChapterExists) return;
