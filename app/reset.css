@@ -40,10 +40,11 @@ footer, header, hgroup, menu, nav, section {
 
 /* Body styles */
 body {
-	/* Commented out line height */
-	/* line-height: 1; */
-	background: #FFF;
-	color: #333333;
+
+
+	/* dark mode */
+	background: #1a1a1a;
+	/* light mode #f8f5f1 */
 	font-size: 14px;
   font-family: system-ui;
 	/* font-family: 'PingFang SC'; */
