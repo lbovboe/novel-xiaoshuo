@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ChapterCard from '@/app/components/Book/ChapterCard';
 import { Book } from '@/app/lib/book';
 import { useSettings } from '@/app/context/SettingsContext';
+import LoadingSpinner from '@/app/components/ui/LoadingSpinner';
 
 interface BookDetailProps {
   book: Book;
@@ -15,6 +16,7 @@ export default function BookDetail({ book }: BookDetailProps) {
   const { convertText } = useSettings();
   const chaptersContainerRef = useRef<HTMLDivElement>(null);
   const [initialScrollDone, setInitialScrollDone] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Simple one-time scroll to top on mount
   useEffect(() => {
@@ -44,7 +46,7 @@ export default function BookDetail({ book }: BookDetailProps) {
     }
   }, [book.id, book.chapters]);
 
-  // Scroll to active chapter immediately when set
+  // Scroll to active chapter with immediate jump
   useEffect(() => {
     if (!initialScrollDone && currentChapter && chaptersContainerRef.current) {
       console.log('Scrolling to chapter:', currentChapter);
@@ -53,14 +55,24 @@ export default function BookDetail({ book }: BookDetailProps) {
       const activeChapterElement = container.querySelector(`[data-chapter="${currentChapter}"]`);
 
       if (activeChapterElement) {
-        // Immediately scroll to the element
+        // Use instant scrolling instead of smooth
         activeChapterElement.scrollIntoView({
           behavior: 'auto',
           block: 'center',
         });
 
+        // We need to wait for the DOM to update after the scrollIntoView
+        requestAnimationFrame(() => {
+          setIsLoading(false);
+          setInitialScrollDone(true);
+        });
+      } else {
+        setIsLoading(false);
         setInitialScrollDone(true);
       }
+    } else if (!currentChapter) {
+      // If there's no current chapter to scroll to, we can stop loading
+      setIsLoading(false);
     }
   }, [currentChapter, initialScrollDone]);
 
@@ -73,6 +85,8 @@ export default function BookDetail({ book }: BookDetailProps) {
 
   return (
     <div className="container mx-auto px-4 pb-12 pt-4 md:px-8">
+      {isLoading && <LoadingSpinner fullScreen text="正在导航到章节..." />}
+
       <div className="mb-4 flex items-center justify-between">
         <Link
           href="/"
