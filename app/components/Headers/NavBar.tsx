@@ -29,7 +29,7 @@ const Navbar = () => {
         >
           {!imageError && mounted ? (
             <Image
-              src="/icon1.png"
+              src="/icons/icon-72x72.png"
               alt="小说网站"
               width={40}
               height={40}
