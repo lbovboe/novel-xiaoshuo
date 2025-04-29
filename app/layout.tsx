@@ -8,6 +8,7 @@ import './reset.css';
 import Footer from '@/app/components/Footer/Footer';
 import Navbar from '@/app/components/Headers/NavBar';
 import ClientThemeWrapper from '@/app/components/ClientThemeWrapper';
+import FooterWrapper from '@/app/components/Footer/FooterWrapper';
 
 // Define viewport for the application
 export const viewport: Viewport = {
@@ -80,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <MotionConfig>
               <Navbar />
               <main className="flex-grow">{children}</main>
-              <Footer />
+              <FooterWrapper />
               <PWARegister />
             </MotionConfig>
           </SettingsProvider>
