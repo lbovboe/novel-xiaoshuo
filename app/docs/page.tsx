@@ -36,21 +36,21 @@ const sections = [
 export default function DocsPage() {
   return (
     <DocsWrapper>
-      <DocLayout showBackLink={false}>
-        <div className="mb-16">
-          <h2 id="overview" className="text-light-text dark:text-dark-text mb-6 text-2xl font-bold">
-            Overview
-          </h2>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-4">
-            Novel Xiaoshuo is a web application for scraping, formatting, and reading Chinese novels. It provides a
+      <DocLayout
+        title="Documentation"
+        description="Novel Xiaoshuo is a web application for scraping, formatting, and reading Chinese novels. It provides a
             clean interface for reading novels and supports various features like text formatting, chapter navigation,
-            and more.
-          </p>
-
-          <h3 id="key-features" className="text-light-text dark:text-dark-text mb-3 mt-6 text-xl font-bold">
+            and more."
+        showBackLink={false}
+      >
+        <div className="mb-16">
+          <h3
+            id="key-features"
+            className="mb-3 mt-6 text-xl font-bold text-light-text-primary dark:text-dark-text-primary"
+          >
             Key Features
           </h3>
-          <ul className="text-light-text/90 dark:text-dark-text/90 ml-6 list-disc space-y-2">
+          <ul className="ml-6 list-disc space-y-2 text-light-text-primary/90 dark:text-dark-text-primary/90">
             <li>
               <strong>Web Scraping</strong>: Scrape novels from Chinese websites
             </li>
@@ -69,7 +69,10 @@ export default function DocsPage() {
           </ul>
         </div>
 
-        <h2 id="documentation-sections" className="text-light-text dark:text-dark-text mb-6 text-2xl font-bold">
+        <h2
+          id="documentation-sections"
+          className="mb-6 text-2xl font-bold text-light-text-primary dark:text-dark-text-primary"
+        >
           Documentation Sections
         </h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

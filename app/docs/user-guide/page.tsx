@@ -12,7 +12,7 @@ export default function UserGuidePage() {
     <DocsWrapper>
       <DocLayout title="User Guide" description="This guide will help you get the most out of Novel Xiaoshuo.">
         <DocSection title="Getting Started" delay={0}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-4">
+          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
             Novel Xiaoshuo is a web application for reading Chinese novels. To get started:
           </p>
           <DocList
@@ -37,7 +37,9 @@ export default function UserGuidePage() {
           </DocSubSection>
 
           <DocSubSection title="Reading Settings" delay={1}>
-            <p className="text-light-text/90 dark:text-dark-text/90 mb-3">You can customize your reading experience:</p>
+            <p className="mb-3 text-light-text-primary/90 dark:text-dark-text-primary/90">
+              You can customize your reading experience:
+            </p>
             <DocList
               items={[
                 <>
@@ -58,7 +60,9 @@ export default function UserGuidePage() {
         </DocSection>
 
         <DocSection title="Importing Novels" delay={2}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-3">You can import novels in several ways:</p>
+          <p className="mb-3 text-light-text-primary/90 dark:text-dark-text-primary/90">
+            You can import novels in several ways:
+          </p>
           <DocList
             type="number"
             items={[
@@ -74,7 +78,7 @@ export default function UserGuidePage() {
         </DocSection>
 
         <DocSection title="Converting Text" delay={3}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-3">
+          <p className="mb-3 text-light-text-primary/90 dark:text-dark-text-primary/90">
             Novel Xiaoshuo supports conversion between Traditional and Simplified Chinese:
           </p>
           <DocList
@@ -89,7 +93,7 @@ export default function UserGuidePage() {
         </DocSection>
 
         <DocSection title="Using as a PWA" delay={4}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-3">
+          <p className="mb-3 text-light-text-primary/90 dark:text-dark-text-primary/90">
             Novel Xiaoshuo can be installed as a Progressive Web App:
           </p>
           <DocList

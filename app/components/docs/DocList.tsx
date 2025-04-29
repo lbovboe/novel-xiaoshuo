@@ -24,7 +24,7 @@ export default function DocList({ items, type = 'bullet', delay = 0 }: DocListPr
   const listClass = type === 'bullet' ? 'ml-6 list-disc space-y-2' : 'ml-6 list-decimal space-y-2';
 
   return (
-    <ListComponent className={`text-light-text/90 dark:text-dark-text/90 ${listClass}`}>
+    <ListComponent className={`text-light-text-primary/90 dark:text-dark-text-primary/90 ${listClass}`}>
       {items.map((item, index) => (
         <m.li key={index} custom={index} initial="hidden" animate="visible" variants={variants}>
           {item}

@@ -28,13 +28,13 @@ export default function DocLayout({
       transition={{ duration: 0.5 }}
       className="mx-auto max-w-5xl px-4"
     >
-      { title &&
+      {title && (
         <div className="mb-8">
           <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-light-text dark:text-dark-text mb-4 text-4xl font-bold"
+            className="mb-4 text-xl font-bold text-light-text-primary dark:text-dark-text-primary"
           >
             {title}
           </m.h1>
@@ -43,13 +43,13 @@ export default function DocLayout({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-light-text/80 dark:text-dark-text/80 text-xl"
+              className="text-light-text-primary/80 dark:text-dark-text-primary/80"
             >
               {description}
             </m.p>
           )}
         </div>
-      }
+      )}
 
       <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}>
         {children}

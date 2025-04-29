@@ -12,7 +12,7 @@ export default function FeaturesPage() {
     <DocsWrapper>
       <DocLayout title="Features" description="This page documents all the features available in Novel Xiaoshuo.">
         <DocSection title="Web Scraping" delay={0}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-4">
+          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
             Novel Xiaoshuo allows you to scrape novels from Chinese websites. The scraping functionality is powered by:
           </p>
           <DocList
@@ -35,7 +35,7 @@ export default function FeaturesPage() {
         </DocSection>
 
         <DocSection title="Text Formatting" delay={1}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-4">Text formatting includes:</p>
+          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">Text formatting includes:</p>
           <DocList
             items={[
               <>
@@ -52,7 +52,9 @@ export default function FeaturesPage() {
         </DocSection>
 
         <DocSection title="Reading Interface" delay={2}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-4">The reading interface features:</p>
+          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
+            The reading interface features:
+          </p>
           <DocList
             items={[
               <>
@@ -72,7 +74,7 @@ export default function FeaturesPage() {
         </DocSection>
 
         <DocSection title="PWA Support" delay={3}>
-          <p className="text-light-text/90 dark:text-dark-text/90 mb-4">
+          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
             Novel Xiaoshuo can be installed as a Progressive Web App, providing:
           </p>
           <DocList

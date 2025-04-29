@@ -17,7 +17,7 @@ export default function DocSubSection({ children, title, delay = 0 }: DocSubSect
       transition={{ duration: 0.4, delay: 0.4 + delay * 0.1 }}
       className="mt-6"
     >
-      <h3 className="text-light-text dark:text-dark-text mb-3 text-xl font-bold">{title}</h3>
+      <h3 className="mb-3 text-xl font-bold text-light-text-primary dark:text-dark-text-primary">{title}</h3>
       {children}
     </m.div>
   );

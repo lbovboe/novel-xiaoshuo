@@ -30,9 +30,9 @@ export default function DocFeatureCard({ title, description, href, icon: Icon, d
               <Icon size={20} />
             </span>
           )}
-          <h3 className="text-light-text dark:text-dark-text text-xl font-bold">{title}</h3>
+          <h3 className="text-xl font-bold text-light-text-primary dark:text-dark-text-primary">{title}</h3>
         </div>
-        <p className="text-light-text/80 dark:text-dark-text/80">{description}</p>
+        <p className="text-light-text-primary/80 dark:text-dark-text-primary/80">{description}</p>
         <div className="mt-auto pt-4">
           <span className="text-sm font-medium text-light-primary group-hover:underline dark:text-dark-primary">
             Learn more →
