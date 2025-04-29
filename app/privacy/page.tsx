@@ -173,7 +173,7 @@ const PrivacyPolicy = () => {
       <div className="mx-auto grid max-w-5xl gap-8">
         <Section icon={<FaShieldAlt size={24} />} title="引言" index={0}>
           <p className="leading-relaxed">
-            最爱小说网（"我们"，"我们的"或"本网站"）尊重您的隐私，致力于保护您的个人信息。本隐私政策描述了我们如何收集、使用、存储和保护您在使用我们的网站和服务时提供的信息。
+            最爱小说网（&quot;我们&quot;，&quot;我们的&quot;或&quot;本网站&quot;）尊重您的隐私，致力于保护您的个人信息。本隐私政策描述了我们如何收集、使用、存储和保护您在使用我们的网站和服务时提供的信息。
           </p>
         </Section>
 

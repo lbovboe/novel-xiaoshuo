@@ -158,7 +158,7 @@ const TermsOfService = () => {
       <div className="mx-auto grid max-w-5xl gap-8">
         <Section icon={<FaHandshake size={24} />} title="欢迎使用最爱小说网" index={0}>
           <p className="leading-relaxed">
-            欢迎访问最爱小说网（"本网站"，"我们"或"我们的"）。本网站由最爱小说网运营。通过访问和使用本网站，您同意受以下条款和条件的约束。如果您不同意这些条款，请不要使用本网站。
+            欢迎访问最爱小说网（&quot;本网站&quot;，&quot;我们&quot;或&quot;我们的&quot;）。本网站由最爱小说网运营。通过访问和使用本网站，您同意受以下条款和条件的约束。如果您不同意这些条款，请不要使用本网站。
           </p>
         </Section>
 
@@ -224,7 +224,7 @@ const TermsOfService = () => {
 
         <Section icon={<FaExclamationTriangle size={24} />} title="免责声明" index={7}>
           <p className="leading-relaxed">
-            本网站及其内容按"原样"提供，不提供任何明示或暗示的保证。我们不保证网站将不间断、安全或无错误运行，也不保证服务将满足您的要求或预期。
+            本网站及其内容按&quot;原样&quot;提供，不提供任何明示或暗示的保证。我们不保证网站将不间断、安全或无错误运行，也不保证服务将满足您的要求或预期。
           </p>
         </Section>
 

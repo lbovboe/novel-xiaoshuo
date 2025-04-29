@@ -158,7 +158,7 @@ const Disclaimer = () => {
       <div className="mx-auto grid max-w-5xl gap-8">
         <Section icon={<FaFileAlt size={24} />} title="内容来源声明" index={0}>
           <p className="leading-relaxed">
-            请注意，最爱小说网（"本网站"）上的小说、漫画及其他文学作品主要由用户上传和分享。我们作为信息存储平台，不对这些内容拥有所有权，也不主张对这些内容拥有任何权利。
+            请注意，最爱小说网（&quot;本网站&quot;）上的小说、漫画及其他文学作品主要由用户上传和分享。我们作为信息存储平台，不对这些内容拥有所有权，也不主张对这些内容拥有任何权利。
           </p>
           <m.p className="mt-4 leading-relaxed" variants={fadeInVariants}>
             本网站尊重知识产权，并致力于保护权利持有人的合法权益。我们相信用户上传的内容已获得适当授权或属于公共领域，但我们无法对所有上传内容进行全面审核。
