@@ -5,9 +5,9 @@ import MotionConfig from '@/app/components/Animation/MotionConfig';
 import PWARegister from '@/app/pwa';
 import './globals.css';
 import './reset.css';
-import Footer from '@/app/components/Footer/Footer';
 import Navbar from '@/app/components/Headers/NavBar';
 import ClientThemeWrapper from '@/app/components/ClientThemeWrapper';
+import FooterWrapper from '@/app/components/Footer/FooterWrapper';
 
 // Define viewport for the application
 export const viewport: Viewport = {
@@ -20,22 +20,22 @@ export const viewport: Viewport = {
 
 // Define metadata for the application
 export const metadata: Metadata = {
-  title: '全本小说',
-  description: '本人最爱小说',
+  title: '最爱小说网',
+  description: '最爱小说网',
   manifest: '/manifest.json',
-  applicationName: '全本小说',
+  applicationName: '最爱小说网',
   appleWebApp: {
     capable: true,
     // Status bar style will be managed dynamically by ThemeMetadata
-    title: '全本小说',
+    title: '最爱小说网',
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
     type: 'website',
-    title: '全本小说',
-    description: '本人最爱小说',
+    title: '最爱小说网',
+    description: '最爱小说网',
   },
   icons: {
     icon: [
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <MotionConfig>
               <Navbar />
               <main className="flex-grow">{children}</main>
-              <Footer />
+              <FooterWrapper />
               <PWARegister />
             </MotionConfig>
           </SettingsProvider>
