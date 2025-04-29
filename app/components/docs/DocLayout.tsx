@@ -64,7 +64,7 @@ export default function DocLayout({
         >
           <Link
             href={backLink}
-            className="bg-light-background-hover text-light-text hover:bg-light-background-active dark:bg-dark-background-hover dark:text-dark-text dark:hover:bg-dark-background-active rounded-md px-4 py-2 transition-colors"
+            className="rounded-md bg-light-paper px-4 py-2 text-light-text-primary transition-colors hover:bg-light-primary/10 dark:bg-dark-paper dark:text-dark-text-primary dark:hover:bg-dark-primary/10"
           >
             {backText}
           </Link>

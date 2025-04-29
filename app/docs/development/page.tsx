@@ -74,7 +74,7 @@ export default function DevelopmentPage() {
           <DocSubSection title="Web Scraper" delay={0}>
             <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
               The web scraper is implemented in{' '}
-              <code className="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-gray-800">scraper.js</code>. It uses:
+              <code className="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-black/20">scraper.js</code>. It uses:
             </p>
             <DocList
               items={[
@@ -88,7 +88,7 @@ export default function DevelopmentPage() {
           <DocSubSection title="Text Formatter" delay={1}>
             <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
               The text formatter in{' '}
-              <code className="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-gray-800">format.js</code> handles:
+              <code className="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-black/20">format.js</code> handles:
             </p>
             <DocList
               items={[

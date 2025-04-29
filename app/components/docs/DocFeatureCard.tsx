@@ -22,7 +22,7 @@ export default function DocFeatureCard({ title, description, href, icon: Icon, d
     >
       <Link
         href={href}
-        className="group flex h-full flex-col rounded-xl border border-light-border bg-white/50 p-6 shadow-sm backdrop-blur-sm transition-all hover:border-light-primary hover:shadow-md dark:border-dark-border dark:bg-gray-900/50 dark:hover:border-dark-primary"
+        className="group flex h-full flex-col rounded-xl border border-light-border bg-white/50 p-6 shadow-sm backdrop-blur-sm transition-all hover:border-light-primary hover:shadow-md dark:border-dark-border dark:bg-dark-border dark:hover:border-dark-primary"
       >
         <div className="mb-4 flex items-center">
           {Icon && (

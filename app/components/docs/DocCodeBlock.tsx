@@ -23,9 +23,9 @@ export default function DocCodeBlock({ code, language = 'bash' }: DocCodeBlockPr
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="relative my-4"
+      className="relative my-4 text-light-text-primary dark:text-dark-text-primary"
     >
-      <pre className="relative overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-gray-800">
+      <pre className="relative overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-black/20">
         <button
           onClick={handleCopy}
           className="absolute right-3 top-3 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
