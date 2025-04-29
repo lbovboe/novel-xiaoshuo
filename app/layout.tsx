@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 // Define metadata for the application
 export const metadata: Metadata = {
   title: '全本小说',
-  description: '本人最爱小说',
+  description: '最爱小说网',
   manifest: '/manifest.json',
   applicationName: '全本小说',
   appleWebApp: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     title: '全本小说',
-    description: '本人最爱小说',
+    description: '最爱小说网',
   },
   icons: {
     icon: [

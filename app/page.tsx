@@ -21,29 +21,28 @@ async function getBooks(): Promise<Book[]> {
   try {
     // Get all directories in the output folder
     const outputDir = path.join(process.cwd(), 'output');
-    const bookDirs = fs.readdirSync(outputDir, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name);
-    
+    const bookDirs = fs
+      .readdirSync(outputDir, { withFileTypes: true })
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => dirent.name);
+
     // Create a book object for each directory
-    const books = bookDirs.map(bookDir => {
+    const books = bookDirs.map((bookDir) => {
       const bookPath = path.join(outputDir, bookDir);
-      
+
       // Count chapters in the book
       const files = fs.readdirSync(bookPath);
-      const chapterFiles = files.filter(file => 
-        file.startsWith('chapter-') && file.endsWith('.json')
-      );
-      
+      const chapterFiles = files.filter((file) => file.startsWith('chapter-') && file.endsWith('.json'));
+
       return {
         id: bookDir,
         title: bookDir, // Using directory name as title
         description: `A captivating novel with ${chapterFiles.length} chapters.`,
         coverImage: `/images/novel/${bookDir}.jpg`, // Updated cover image path
-        chapterCount: chapterFiles.length
+        chapterCount: chapterFiles.length,
       };
     });
-    
+
     return books;
   } catch (error) {
     console.error('Error loading books:', error);
@@ -53,15 +52,15 @@ async function getBooks(): Promise<Book[]> {
 
 export default async function Home() {
   const books = await getBooks();
-  
+
   return (
-    <div className="container mx-auto px-4 pb-4 md:px-8 ">
+    <div className="container mx-auto px-4 pb-4 md:px-8">
       <FadeIn direction="down">
-        <h1 className="mb-4 text-center text-xl font-bold text-light-text-primary md:text-3xl dark:text-dark-text-primary">
-          本人最爱小说
+        <h1 className="mb-4 text-center text-xl font-bold text-light-text-primary dark:text-dark-text-primary md:text-3xl">
+          最爱小说网
         </h1>
       </FadeIn>
-      
+
       <FadeIn direction="up" delay={0.2}>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {books.map((book, index) => (

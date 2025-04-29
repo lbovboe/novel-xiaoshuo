@@ -29,7 +29,7 @@ const Footer = () => {
             - text-light/dark-text-secondary: Theme-based text color
           */}
           <div className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-            © {new Date().getFullYear()} 本人最爱小说. 版权所有.
+            © {new Date().getFullYear()} 最爱小说网. 版权所有.
           </div>
 
           {/* 
