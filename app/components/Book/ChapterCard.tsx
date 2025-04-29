@@ -33,12 +33,11 @@ const ChapterCard = ({ bookId, index, title, isActive = false }: ChapterCardProp
                 className={`truncate font-medium ${
                   isActive
                     ? 'text-light-primary dark:text-dark-primary'
-                    : 'text-light-text-primary dark:text-dark-text-primary'
+                    : 'text-light-text-primary hover:text-light-primary dark:text-dark-text-primary dark:hover:text-light-primary'
                 }`}
               >
                 {title}
               </h3>
-              {/* <p className="mt-1 text-xs text-light-text-secondary dark:text-dark-text-secondary">第 {index - 1} 章</p> */}
             </div>
           </div>
         </div>

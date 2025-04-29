@@ -170,9 +170,9 @@ export default function ChapterDetail({
   }, [autoNext, nextChapterExists, bookId, chapterIndex, router]);
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 pb-12 md:px-8 md:pt-4">
+    <div className="container mx-auto max-w-4xl px-4 pb-12 md:px-8 ">
       <FadeIn direction="left">
-        <div className="mt-4">
+        <div className="">
           <Link
             href={`/book/${encodeURIComponent(bookId)}`}
             className="group mb-4 inline-flex items-center text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
