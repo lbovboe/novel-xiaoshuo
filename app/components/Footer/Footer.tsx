@@ -23,30 +23,32 @@ const Footer = () => {
 
         {/* Bottom footer with copyright and links */}
         <div className="flex flex-col items-center justify-center md:flex-row">
-          <div className="mt-3 flex flex-wrap gap-5 text-sm md:mt-0">
-            <div className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
+          <div className="mt-3 flex flex-wrap justify-center gap-4 text-sm md:mt-0">
+            <div className="text-center text-sm text-light-text-secondary dark:text-dark-text-secondary">
               Copyright © {new Date().getFullYear()} 最爱小说网 版权所有 All Rights Reserved.
             </div>
-            <a
-              href="/privacy"
-              className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
-            >
-              隐私政策
-            </a>
-            <span>|</span>
-            <a
-              href="/terms"
-              className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
-            >
-              服务条款
-            </a>
-            <span>|</span>
-            <a
-              href="/disclaimer"
-              className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
-            >
-              免责声明
-            </a>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="/privacy"
+                className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+              >
+                隐私政策
+              </a>
+              <span>|</span>
+              <a
+                href="/terms"
+                className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+              >
+                服务条款
+              </a>
+              <span>|</span>
+              <a
+                href="/disclaimer"
+                className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+              >
+                免责声明
+              </a>
+            </div>
           </div>
         </div>
       </div>
