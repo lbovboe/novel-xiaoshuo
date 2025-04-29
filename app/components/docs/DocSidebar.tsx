@@ -2,35 +2,58 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { m } from 'framer-motion';
-import { FaBook, FaTools, FaCogs, FaCode, FaTimes, FaBars } from 'react-icons/fa';
+import { FaBook, FaTools, FaCogs, FaCode, FaTimes, FaBars, FaGlobe } from 'react-icons/fa';
+import { useLanguage } from './LanguageContext';
 
 type NavItem = {
-  label: string;
+  label: {
+    en: string;
+    zh: string;
+  };
   href: string;
   icon: React.ReactNode;
 };
 
 const navItems: NavItem[] = [
-  { label: 'Overview', href: '/docs', icon: <FaBook className="text-doc_icon-light dark:text-doc_icon-dark" /> },
   {
-    label: 'User Guide',
+    label: {
+      en: 'Overview',
+      zh: '概述',
+    },
+    href: '/docs',
+    icon: <FaBook className="text-doc_icon-light dark:text-doc_icon-dark" />,
+  },
+  {
+    label: {
+      en: 'User Guide',
+      zh: '用户指南',
+    },
     href: '/docs/user-guide',
     icon: <FaTools className="text-doc_icon-light dark:text-doc_icon-dark" />,
   },
   {
-    label: 'Features',
+    label: {
+      en: 'Features',
+      zh: '功能特性',
+    },
     href: '/docs/features',
     icon: <FaCogs className="text-doc_icon-light dark:text-doc_icon-dark" />,
   },
   {
-    label: 'UI Components',
+    label: {
+      en: 'UI Components',
+      zh: 'UI 组件',
+    },
     href: '/docs/components',
     icon: <FaCode className="text-doc_icon-light dark:text-doc_icon-dark" />,
   },
   {
-    label: 'Development',
+    label: {
+      en: 'Development',
+      zh: '开发指南',
+    },
     href: '/docs/development',
     icon: <FaCode className="text-doc_icon-light dark:text-doc_icon-dark" />,
   },
@@ -39,6 +62,12 @@ const navItems: NavItem[] = [
 export default function DocSidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  console.log("🚀 ~ DocSidebar ~ language:", language)
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'zh' : 'en');
+  };
 
   return (
     <>
@@ -56,9 +85,19 @@ export default function DocSidebar() {
       {/* Desktop sidebar */}
       <div className="hidden w-64 shrink-0 md:block">
         <div className="sticky top-24 overflow-y-auto pr-4">
-          <h3 className="text-doc_text-muted_light dark:text-doc_text-muted_dark mb-4 text-sm font-semibold uppercase tracking-wider">
-            Documentation
-          </h3>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-doc_text-muted_light dark:text-doc_text-muted_dark text-sm font-semibold uppercase tracking-wider">
+              {language === 'en' ? 'Documentation' : '文档'}
+            </h3>
+            <button
+              onClick={toggleLanguage}
+              className="text-doc_icon-light hover:text-doc_icon-accent_light dark:text-doc_icon-dark dark:hover:text-doc_icon-accent_dark flex items-center text-sm font-medium"
+              aria-label="Toggle language"
+            >
+              <FaGlobe size={16} className="mr-1" />
+              <span>{language === 'en' ? '中文' : 'English'}</span>
+            </button>
+          </div>
           <nav className="space-y-1">
             {navItems.map((item) => (
               <Link
@@ -71,7 +110,7 @@ export default function DocSidebar() {
                 }`}
               >
                 <span className="mr-3">{item.icon}</span>
-                {item.label}
+                {language === 'en' ? item.label.en : item.label.zh}
               </Link>
             ))}
           </nav>
@@ -87,15 +126,24 @@ export default function DocSidebar() {
       >
         <div className="mb-6 flex items-center justify-between">
           <h3 className="text-doc_text-muted_light dark:text-doc_text-muted_dark text-sm font-semibold uppercase tracking-wider">
-            Documentation
+            {language === 'en' ? 'Documentation' : '文档'}
           </h3>
-          <button
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-doc_text-body_light hover:bg-doc_bg-paper_light dark:text-doc_text-body_dark dark:hover:bg-doc_bg-paper_dark rounded-full p-2"
-            aria-label="Close menu"
-          >
-            <FaTimes size={18} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleLanguage}
+              className="text-doc_icon-light hover:text-doc_icon-accent_light dark:text-doc_icon-dark dark:hover:text-doc_icon-accent_dark flex items-center rounded-full p-2 text-sm font-medium"
+              aria-label="Toggle language"
+            >
+              <FaGlobe size={16} />
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-doc_text-body_light hover:bg-doc_bg-paper_light dark:text-doc_text-body_dark dark:hover:bg-doc_bg-paper_dark rounded-full p-2"
+              aria-label="Close menu"
+            >
+              <FaTimes size={18} />
+            </button>
+          </div>
         </div>
         <nav className="space-y-1">
           {navItems.map((item) => (
@@ -110,7 +158,7 @@ export default function DocSidebar() {
               }`}
             >
               <span className="mr-3">{item.icon}</span>
-              {item.label}
+              {language === 'en' ? item.label.en : item.label.zh}
             </Link>
           ))}
         </nav>
