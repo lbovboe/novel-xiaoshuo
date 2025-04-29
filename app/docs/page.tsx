@@ -71,7 +71,7 @@ export default function DocsPage() {
         <div className="mb-16">
           <h3
             id="key-features"
-            className="mb-6 mt-6 text-xl font-bold text-light-text-primary dark:text-dark-text-primary"
+            className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-6 mt-6 text-xl font-bold"
           >
             Key Features
           </h3>
@@ -80,7 +80,7 @@ export default function DocsPage() {
 
         <h2
           id="documentation-sections"
-          className="mb-6 text-2xl font-bold text-light-text-primary dark:text-dark-text-primary"
+          className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-6 text-2xl font-bold"
         >
           Documentation Sections
         </h2>

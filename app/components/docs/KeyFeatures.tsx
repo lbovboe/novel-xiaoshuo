@@ -57,23 +57,23 @@ export default function KeyFeatures({ features, delay = 0 }: KeyFeaturesProps) {
                 <div
                   className={`absolute -inset-1 rounded-full bg-gradient-to-br ${gradientColor} opacity-75 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md`}
                 ></div>
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-light-background dark:bg-dark-background">
+                <div className="bg-doc_bg-light dark:bg-doc_bg-dark relative flex h-12 w-12 items-center justify-center rounded-full">
                   <div className="relative">
                     <FaCircle
                       size={28}
                       className={`bg-gradient-to-br bg-clip-text text-transparent ${gradientColor}`}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-light-text-primary dark:text-dark-text-primary">
+                    <div className="text-doc_text-heading_light dark:text-doc_text-heading_dark absolute inset-0 flex items-center justify-center text-sm font-bold">
                       {number}
                     </div>
                   </div>
                 </div>
               </div>
               <div>
-                <h4 className="mb-1 text-lg font-bold text-light-text-primary dark:text-dark-text-primary">
+                <h4 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-1 text-lg font-bold">
                   {feature.title}
                 </h4>
-                <p className="text-light-text-primary/70 dark:text-dark-text-primary/70">{feature.description}</p>
+                <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark">{feature.description}</p>
               </div>
             </div>
           </m.div>

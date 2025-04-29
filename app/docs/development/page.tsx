@@ -15,7 +15,7 @@ export default function DevelopmentPage() {
         description="This guide is for developers who want to understand the codebase, contribute to the project, or extend its functionality."
       >
         <DocSection title="Project Structure" delay={0}>
-          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             The project follows a standard Next.js application structure:
           </p>
           <DocList
@@ -23,7 +23,7 @@ export default function DevelopmentPage() {
             items={[
               <>
                 <strong>app/</strong>: Contains the Next.js app router components
-                <ul className="ml-6 mt-2 list-disc space-y-1 text-light-text-primary/90 dark:text-dark-text-primary/90">
+                <ul className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark ml-6 mt-2 list-disc space-y-1">
                   <li>
                     <strong>components/</strong>: UI components organized by type
                   </li>
@@ -60,8 +60,8 @@ export default function DevelopmentPage() {
             items={[
               'Clone the repository',
               <>
-                Install dependencies:
-                <DocCodeBlock code="npm install" />
+                Install dependencies :
+                <DocCodeBlock code="npm install " />
               </>,
               <>
                 Start the development server:
@@ -73,7 +73,7 @@ export default function DevelopmentPage() {
 
         <DocSection title="Core Functionality" delay={2}>
           <DocSubSection title="Web Scraper" delay={0}>
-            <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
+            <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               The web scraper is implemented in{' '}
               <code className="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-black/20">scraper.js</code>. It uses:
             </p>
@@ -87,7 +87,7 @@ export default function DevelopmentPage() {
           </DocSubSection>
 
           <DocSubSection title="Text Formatter" delay={1}>
-            <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
+            <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               The text formatter in{' '}
               <code className="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-black/20">format.js</code> handles:
             </p>
@@ -101,7 +101,7 @@ export default function DevelopmentPage() {
           </DocSubSection>
 
           <DocSubSection title="Web Application" delay={2}>
-            <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
+            <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               The Next.js application provides:
             </p>
             <DocList
@@ -116,9 +116,11 @@ export default function DevelopmentPage() {
         </DocSection>
 
         <DocSection title="Building and Deployment" delay={3}>
-          <p className="mb-4 text-light-text-primary/90 dark:text-dark-text-primary/90">To build the application:</p>
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
+            To build the application:
+          </p>
           <DocCodeBlock code="npm run build" />
-          <p className="mt-4 text-light-text-primary/90 dark:text-dark-text-primary/90">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mt-4">
             The application can be deployed to platforms like Vercel, Netlify, or any service that supports Next.js
             applications.
           </p>

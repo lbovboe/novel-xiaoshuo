@@ -62,9 +62,11 @@ export default function DocTableOfContents({ titleSelector = 'h2, h3' }: DocTabl
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-24 hidden max-h-[calc(100vh-6rem)] overflow-auto border-l border-light-border py-4 pl-6 dark:border-dark-border lg:block lg:w-64 lg:flex-shrink-0"
+      className="border-doc_border-light dark:border-doc_border-dark sticky top-24 hidden max-h-[calc(100vh-6rem)] overflow-auto border-l py-4 pl-6 lg:block lg:w-64 lg:flex-shrink-0"
     >
-      <h4 className="text-light-text-primary/70 dark:text-dark-text-primary/70 mb-4 text-sm font-semibold uppercase">On this page</h4>
+      <h4 className="text-doc_text-muted_light dark:text-doc_text-muted_dark mb-4 text-sm font-semibold uppercase">
+        On this page
+      </h4>
       <nav>
         <ul className="space-y-2">
           {toc.map((item) => (
@@ -73,8 +75,8 @@ export default function DocTableOfContents({ titleSelector = 'h2, h3' }: DocTabl
                 href={`#${item.id}`}
                 className={`block py-1 text-sm transition-colors ${
                   activeId === item.id
-                    ? 'font-medium text-light-primary dark:text-dark-primary'
-                    : 'text-light-text-primary/70 dark:text-dark-text-primary/70 hover:text-light-primary dark:hover:text-dark-primary'
+                    ? 'text-doc_text-link_light dark:text-doc_text-link_dark font-medium'
+                    : 'text-doc_text-muted_light dark:text-doc_text-muted_dark hover:text-doc_text-link_light dark:hover:text-doc_text-link_dark'
                 }`}
               >
                 {item.title}

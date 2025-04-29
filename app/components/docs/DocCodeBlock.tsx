@@ -23,7 +23,7 @@ export default function DocCodeBlock({ code, language = 'bash' }: DocCodeBlockPr
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="relative my-4 text-light-text-primary dark:text-dark-text-primary"
+      className="text-doc_text-body_light dark:text-doc_text-body_dark relative my-4"
     >
       <pre className="relative overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-black/20">
         <button

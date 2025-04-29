@@ -11,7 +11,7 @@ type DocPageWrapperProps = {
 
 export default function DocPageWrapper({ children, showTableOfContents = true }: DocPageWrapperProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-light-background-gradient-start/30 to-light-background-gradient-end/30 dark:from-dark-background-gradient-start/30 dark:to-dark-background-gradient-end/30">
+    <div className="from-doc_bg-light to-doc_bg-light dark:from-doc_bg-dark dark:to-doc_bg-dark min-h-screen bg-gradient-to-b">
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

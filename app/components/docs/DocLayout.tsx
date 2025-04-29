@@ -34,7 +34,7 @@ export default function DocLayout({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-4 text-xl font-bold text-light-text-primary dark:text-dark-text-primary"
+            className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold"
           >
             {title}
           </m.h1>
@@ -43,7 +43,7 @@ export default function DocLayout({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-light-text-primary/80 dark:text-dark-text-primary/80"
+              className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark"
             >
               {description}
             </m.p>
@@ -64,7 +64,7 @@ export default function DocLayout({
         >
           <Link
             href={backLink}
-            className="rounded-md bg-light-paper px-4 py-2 text-light-text-primary transition-colors hover:bg-light-primary/10 dark:bg-dark-paper dark:text-dark-text-primary dark:hover:bg-dark-primary/10"
+            className="bg-doc_bg-paper_light text-doc_text-body_light hover:bg-doc_bg-accent_light dark:bg-doc_bg-paper_dark dark:text-doc_text-body_dark dark:hover:bg-doc_bg-accent_dark rounded-md px-4 py-2 transition-colors"
           >
             {backText}
           </Link>

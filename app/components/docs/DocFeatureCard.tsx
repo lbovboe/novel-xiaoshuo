@@ -22,19 +22,19 @@ export default function DocFeatureCard({ title, description, href, icon: Icon, d
     >
       <Link
         href={href}
-        className="group flex h-full flex-col rounded-xl border border-light-border bg-white/50 p-6 shadow-sm backdrop-blur-sm transition-all hover:border-light-primary hover:shadow-md dark:border-dark-border dark:bg-dark-border dark:hover:border-dark-primary"
+        className="border-doc_border-light bg-doc_bg-card_light hover:border-doc_border-accent_light dark:border-doc_border-dark dark:bg-doc_bg-card_dark dark:hover:border-doc_border-accent_dark group flex h-full flex-col rounded-xl border p-6 shadow-sm backdrop-blur-sm transition-all hover:shadow-md"
       >
         <div className="mb-4 flex items-center">
           {Icon && (
-            <span className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-light-primary/10 text-light-primary dark:bg-dark-primary/20 dark:text-dark-primary">
+            <span className="bg-doc_bg-accent_light text-doc_icon-light dark:bg-doc_bg-accent_dark dark:text-doc_icon-dark mr-3 flex h-10 w-10 items-center justify-center rounded-full">
               <Icon size={20} />
             </span>
           )}
-          <h3 className="text-xl font-bold text-light-text-primary dark:text-dark-text-primary">{title}</h3>
+          <h3 className="text-doc_text-heading_light dark:text-doc_text-heading_dark text-xl font-bold">{title}</h3>
         </div>
-        <p className="text-light-text-primary/80 dark:text-dark-text-primary/80">{description}</p>
+        <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark">{description}</p>
         <div className="mt-auto pt-4">
-          <span className="text-sm font-medium text-light-primary group-hover:underline dark:text-dark-primary">
+          <span className="text-doc_text-link_light dark:text-doc_text-link_dark text-sm font-medium group-hover:underline">
             Learn more →
           </span>
         </div>

@@ -50,7 +50,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
         return (
           <m.div
             key={index}
-            className={`hover:bg-light-background-secondary dark:hover:bg-dark-background-secondary/50 group flex ${type==="number" ? "items-start":"items-center"} items-start gap-3 rounded-lg p-2 transition-all duration-200`}
+            className={`hover:bg-doc_bg-accent_light dark:hover:bg-doc_bg-accent_dark group flex ${type === 'number' ? 'items-start' : 'items-center'} items-start gap-3 rounded-lg p-2 transition-all duration-200`}
             variants={itemVariants}
           >
             <div className="relative flex-shrink-0">
@@ -58,7 +58,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
                 className={`absolute -inset-1 rounded-full bg-gradient-to-br ${gradientColor} opacity-75 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md`}
               ></div>
               <div
-                className={`relative flex ${type === 'number' ? 'h-4 w-4' : 'h-2 w-2'} items-center justify-center rounded-full bg-light-background dark:bg-dark-background`}
+                className={`relative flex ${type === 'number' ? 'h-4 w-4' : 'h-2 w-2'} bg-doc_bg-light dark:bg-doc_bg-dark items-center justify-center rounded-full`}
               >
                 <div className="relative">
                   <FaCircle
@@ -66,14 +66,14 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
                     className={`bg-gradient-to-br bg-clip-text text-transparent ${gradientColor}`}
                   />
                   {type === 'number' && (
-                    <div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-light-text-primary dark:text-dark-text-primary">
+                    <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark absolute inset-0 flex items-center justify-center text-sm">
                       {number}
                     </div>
                   )}
                 </div>
               </div>
             </div>
-            <div className="text-light-text-primary/90 dark:text-dark-text-primary/90">{item}</div>
+            <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark">{item}</div>
           </m.div>
         );
       })}
