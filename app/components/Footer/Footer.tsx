@@ -6,7 +6,7 @@ const Footer = () => {
       - bg-light/dark-paper: Theme-based background color
       - border-t: Top border for visual separation
     */
-    <footer className="mt-auto border-t border-light-border bg-light-paper/30 dark:border-dark-border dark:bg-dark-paper/30">
+    <footer className="mt-auto border-t border-solid border-light-border bg-light-paper/30 py-6 dark:border-dark-border dark:bg-dark-paper/30">
       {/* 
         Container for content:
         - container: Sets max-width and centers content
@@ -14,47 +14,38 @@ const Footer = () => {
         - px-4: Adds horizontal padding
       */}
       <div className="container mx-auto px-4">
-        {/* 
-          Content wrapper:
-          - flex flex-col: Stack items vertically on mobile
-          - md:flex-row: Place items side by side on medium screens
-          - justify-between: Space items apart
-          - items-center: Center items vertically
-          - py-4: Vertical padding
-        */}
-        <div className="flex flex-col items-center justify-between py-4 md:flex-row">
-          {/* 
-            Copyright text:
-            - text-sm: Smaller font size
-            - text-light/dark-text-secondary: Theme-based text color
-          */}
-          <div className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-            © {new Date().getFullYear()} 最爱小说网. 版权所有.
-          </div>
+        {/* Disclaimer at top */}
+        <div className="mb-2 text-center">
+          <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
+            最爱小说阅读网所有小说作品均来自网友上传或转载于其他网站，版权属于原创作者。如侵犯了您的权利，请与本站联系，本站将立刻删除。
+          </p>
+        </div>
 
-          {/* 
-            Links container:
-            - flex gap-4: Horizontal layout with spacing
-            - mt-2: Top margin on mobile
-            - md:mt-0: Remove top margin on medium screens
-          */}
-          <div className="mt-2 flex gap-4 md:mt-0">
-            {/* 
-              Footer links:
-              - hover:text-light/dark-primary: Theme-based hover color
-              - transition-colors: Smooth color transition
-            */}
+        {/* Bottom footer with copyright and links */}
+        <div className="flex flex-col items-center justify-center md:flex-row">
+          <div className="mt-3 flex flex-wrap gap-5 text-sm md:mt-0">
+            <div className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
+              Copyright © {new Date().getFullYear()} 最爱小说网 版权所有 All Rights Reserved.
+            </div>
             <a
-              href="#"
+              href="/privacy"
               className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
             >
               隐私政策
             </a>
+            <span>|</span>
             <a
-              href="#"
+              href="/terms"
               className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
             >
               服务条款
+            </a>
+            <span>|</span>
+            <a
+              href="/disclaimer"
+              className="text-light-text-secondary transition-colors hover:text-light-primary dark:text-dark-text-secondary dark:hover:text-dark-primary"
+            >
+              免责声明
             </a>
           </div>
         </div>
