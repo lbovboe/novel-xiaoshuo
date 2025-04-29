@@ -21,70 +21,35 @@ type LanguageProviderProps = {
   children: ReactNode;
 };
 
-// Create a global variable to store the current language
-let globalLanguage: 'en' | 'zh' = 'en';
-
-// Function to get the initial language preference
-const getInitialLanguage = (): 'en' | 'zh' => {
-  // Return the global language if it's already set
-  if (globalLanguage !== 'en') {
-    return globalLanguage;
-  }
-
-  // Check localStorage if we're in the browser
-  if (typeof window !== 'undefined') {
-    const savedLanguage = localStorage.getItem('docs-language');
-    if (savedLanguage === 'en' || savedLanguage === 'zh') {
-      globalLanguage = savedLanguage;
-      return savedLanguage;
-    }
-  }
-
-  return 'en';
-};
-
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguageState] = useState<'en' | 'zh'>(getInitialLanguage);
+  // Always initialize with 'en' to prevent hydration mismatch
+  const [language, setLanguageState] = useState<'en' | 'zh'>('en');
+  // Track whether we're on the client
+  const [isClient, setIsClient] = useState(false);
 
-  // Update the language state and synchronize globally
+  // Set isClient to true on mount
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Initialize language from localStorage on client side only
+  useEffect(() => {
+    if (isClient) {
+      const savedLanguage = localStorage.getItem('docs-language');
+      if (savedLanguage === 'en' || savedLanguage === 'zh') {
+        setLanguageState(savedLanguage);
+      }
+    }
+  }, [isClient]);
+
+  // Update the language state
   const setLanguage = (lang: 'en' | 'zh') => {
     setLanguageState(lang);
-    globalLanguage = lang;
 
-    if (typeof window !== 'undefined') {
+    if (isClient) {
       localStorage.setItem('docs-language', lang);
-
-      // Dispatch a custom event to notify other components about the language change
-      const event = new CustomEvent('languageChange', { detail: { language: lang } });
-      window.dispatchEvent(event);
     }
   };
-
-  // Listen for language change events from other components
-  useEffect(() => {
-    const handleLanguageChange = (e: any) => {
-      const newLang = e.detail.language;
-      if (newLang !== language) {
-        setLanguageState(newLang);
-      }
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange);
-    return () => {
-      window.removeEventListener('languageChange', handleLanguageChange);
-    };
-  }, [language]);
-
-  // Initialize language from localStorage on mount
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('docs-language');
-    if (savedLanguage === 'en' || savedLanguage === 'zh') {
-      if (savedLanguage !== language) {
-        setLanguageState(savedLanguage);
-        globalLanguage = savedLanguage;
-      }
-    }
-  }, [language]);
 
   return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
 };

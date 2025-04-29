@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { m } from 'framer-motion';
 import { FaBook, FaTools, FaCogs, FaCode, FaTimes, FaBars, FaGlobe } from 'react-icons/fa';
 import { useLanguage } from './LanguageContext';
@@ -63,11 +63,20 @@ export default function DocSidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
-  console.log("🚀 ~ DocSidebar ~ language:", language)
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch by only rendering the correct language content after mounting
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'zh' : 'en');
   };
+
+  // Before client-side hydration, always show English content to match the server
+  const docLabel = mounted ? (language === 'en' ? 'Documentation' : '文档') : 'Documentation';
+  const toggleLabel = mounted ? (language === 'en' ? '中文' : 'English') : '中文';
 
   return (
     <>
@@ -87,7 +96,7 @@ export default function DocSidebar() {
         <div className="sticky top-24 overflow-y-auto pr-4">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-doc_text-muted_light dark:text-doc_text-muted_dark text-sm font-semibold uppercase tracking-wider">
-              {language === 'en' ? 'Documentation' : '文档'}
+              {docLabel}
             </h3>
             <button
               onClick={toggleLanguage}
@@ -95,7 +104,7 @@ export default function DocSidebar() {
               aria-label="Toggle language"
             >
               <FaGlobe size={16} className="mr-1" />
-              <span>{language === 'en' ? '中文' : 'English'}</span>
+              <span>{toggleLabel}</span>
             </button>
           </div>
           <nav className="space-y-1">
@@ -110,7 +119,7 @@ export default function DocSidebar() {
                 }`}
               >
                 <span className="mr-3">{item.icon}</span>
-                {language === 'en' ? item.label.en : item.label.zh}
+                {mounted ? (language === 'en' ? item.label.en : item.label.zh) : item.label.en}
               </Link>
             ))}
           </nav>
@@ -126,7 +135,7 @@ export default function DocSidebar() {
       >
         <div className="mb-6 flex items-center justify-between">
           <h3 className="text-doc_text-muted_light dark:text-doc_text-muted_dark text-sm font-semibold uppercase tracking-wider">
-            {language === 'en' ? 'Documentation' : '文档'}
+            {docLabel}
           </h3>
           <div className="flex items-center gap-2">
             <button
@@ -158,7 +167,7 @@ export default function DocSidebar() {
               }`}
             >
               <span className="mr-3">{item.icon}</span>
-              {language === 'en' ? item.label.en : item.label.zh}
+              {mounted ? (language === 'en' ? item.label.en : item.label.zh) : item.label.en}
             </Link>
           ))}
         </nav>
