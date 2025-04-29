@@ -17,14 +17,14 @@ export default function UserGuidePage() {
     description:
       language === 'en'
         ? 'This guide will help you get the most out of Novel Xiaoshuo.'
-        : '本指南将帮助您充分利用 Novel Xiaoshuo。',
+        : '本指南将帮助您充分利用 最爱小说网。',
     sections: {
       gettingStarted: {
         title: language === 'en' ? 'Getting Started' : '入门',
         description:
           language === 'en'
             ? 'Novel Xiaoshuo is a web application for reading Chinese novels. To get started:'
-            : 'Novel Xiaoshuo 是一个用于阅读中文小说的 Web 应用程序。开始使用：',
+            : '最爱小说网是一个用于阅读中文小说的 Web 应用程序。开始使用：',
         items: [
           language === 'en' ? 'Visit the main page' : '访问主页',
           language === 'en' ? 'Browse available novels or import your own' : '浏览可用小说或导入您自己的小说',
@@ -119,7 +119,7 @@ export default function UserGuidePage() {
         description:
           language === 'en'
             ? 'Novel Xiaoshuo supports conversion between Traditional and Simplified Chinese:'
-            : 'Novel Xiaoshuo 支持繁体中文和简体中文之间的转换：',
+            : '最爱小说网支持繁体中文和简体中文之间的转换：',
         items: [
           language === 'en' ? 'Go to the Text Tools section' : '转到"文本工具"部分',
           language === 'en' ? 'Select your conversion preference' : '选择您的转换首选项',
@@ -132,7 +132,7 @@ export default function UserGuidePage() {
         description:
           language === 'en'
             ? 'Novel Xiaoshuo can be installed as a Progressive Web App:'
-            : 'Novel Xiaoshuo 可以安装为渐进式 Web 应用：',
+            : '最爱小说网可以安装为渐进式 Web 应用：',
         items: [
           language === 'en' ? 'Visit the website in a supported browser' : '使用支持的浏览器访问网站',
           language === 'en'

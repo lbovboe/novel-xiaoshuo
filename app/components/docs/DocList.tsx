@@ -73,7 +73,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
                 </div>
               </div>
             </div>
-            <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark">{item}</div>
+            <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark w-full">{item}</div>
           </m.div>
         );
       })}

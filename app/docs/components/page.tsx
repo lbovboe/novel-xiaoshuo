@@ -15,7 +15,7 @@ export default function ComponentsPage() {
     description:
       language === 'en'
         ? 'This page documents the main UI components used in Novel Xiaoshuo.'
-        : '本页面记录了 Novel Xiaoshuo 中使用的主要 UI 组件。',
+        : '本页面记录了 最爱小说网中使用的主要 UI 组件。',
     sections: {
       componentCategories: {
         title: language === 'en' ? 'Component Categories' : '组件类别',
@@ -103,7 +103,7 @@ export default function ComponentsPage() {
         description:
           language === 'en'
             ? 'Novel Xiaoshuo includes a theme system with components like:'
-            : 'Novel Xiaoshuo 包含带有以下组件的主题系统：',
+            : '最爱小说网包含带有以下组件的主题系统：',
         items: [
           {
             en: (

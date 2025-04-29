@@ -16,7 +16,7 @@ const sections = [
     },
     description: {
       en: 'Learn how to use Novel Xiaoshuo',
-      zh: '了解如何使用 Novel Xiaoshuo',
+      zh: '了解如何使用最爱小说网',
     },
     href: '/docs/user-guide',
     icon: FaTools,
@@ -115,7 +115,6 @@ const features = [
 
 export default function DocsPage() {
   const { language } = useLanguage();
-  console.log("🚀 ~ DocsPage ~ language:", language)
 
   // Page content based on selected language
   const content = {
@@ -123,7 +122,7 @@ export default function DocsPage() {
     description:
       language === 'en'
         ? 'Novel Xiaoshuo is a web application for scraping, formatting, and reading Chinese novels. It provides a clean interface for reading novels and supports various features like text formatting, chapter navigation, and more.'
-        : 'Novel Xiaoshuo 是一个用于抓取、格式化和阅读中文小说的网络应用程序。它提供了一个清晰的阅读界面，并支持各种功能，如文本格式化、章节导航等。',
+        : '最爱小说网是一个用于抓取、格式化和阅读中文小说的网络应用程序。它提供了一个清晰的阅读界面，并支持各种功能，如文本格式化、章节导航等。',
     keyFeatures: language === 'en' ? 'Key Features' : '主要功能',
     docSections: language === 'en' ? 'Documentation Sections' : '文档部分',
   };

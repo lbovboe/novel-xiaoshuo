@@ -17,14 +17,14 @@ export default function FeaturesPage() {
     description:
       language === 'en'
         ? 'This page documents all the features available in Novel Xiaoshuo.'
-        : '本页面记录了 Novel Xiaoshuo 中所有可用的功能特性。',
+        : '本页面记录了 最爱小说网中所有可用的功能特性。',
     sections: {
       webScraping: {
         title: language === 'en' ? 'Web Scraping' : '网页抓取',
         description:
           language === 'en'
             ? 'Novel Xiaoshuo allows you to scrape novels from Chinese websites. The scraping functionality is powered by:'
-            : 'Novel Xiaoshuo 允许您从中文网站抓取小说。抓取功能由以下技术驱动：',
+            : '最爱小说网允许您从中文网站抓取小说。抓取功能由以下技术驱动：',
         items: [
           {
             en: (
@@ -171,7 +171,7 @@ export default function FeaturesPage() {
         description:
           language === 'en'
             ? 'Novel Xiaoshuo can be installed as a Progressive Web App, providing:'
-            : 'Novel Xiaoshuo 可以安装为渐进式 Web 应用，提供：',
+            : '最爱小说网可以安装为渐进式 Web 应用，提供：',
         items: [
           {
             en: (
