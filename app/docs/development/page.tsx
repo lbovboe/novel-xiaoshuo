@@ -19,6 +19,7 @@ export default function DevelopmentPage() {
             The project follows a standard Next.js application structure:
           </p>
           <DocList
+            type="number"
             items={[
               <>
                 <strong>app/</strong>: Contains the Next.js app router components

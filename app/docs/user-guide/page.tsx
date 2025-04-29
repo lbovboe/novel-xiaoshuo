@@ -16,7 +16,6 @@ export default function UserGuidePage() {
             Novel Xiaoshuo is a web application for reading Chinese novels. To get started:
           </p>
           <DocList
-            type="number"
             items={[
               'Visit the main page',
               'Browse available novels or import your own',

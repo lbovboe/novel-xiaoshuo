@@ -4,6 +4,7 @@ import { FaBook, FaTools, FaCogs, FaCode } from 'react-icons/fa';
 import DocsWrapper from '../components/docs/DocsWrapper';
 import DocLayout from '../components/docs/DocLayout';
 import DocFeatureCard from '../components/docs/DocFeatureCard';
+import KeyFeatures from '../components/docs/KeyFeatures';
 
 // Documentation sections
 const sections = [
@@ -33,6 +34,30 @@ const sections = [
   },
 ];
 
+// Key features of the application
+const features = [
+  {
+    title: 'Web Scraping',
+    description: 'Scrape novels from Chinese websites',
+  },
+  {
+    title: 'Text Formatting',
+    description: 'Convert between Traditional and Simplified Chinese',
+  },
+  {
+    title: 'Reading Interface',
+    description: 'Clean, responsive UI for reading novels',
+  },
+  {
+    title: 'Chapter Navigation',
+    description: 'Easy navigation between chapters',
+  },
+  {
+    title: 'PWA Support',
+    description: 'Install as a Progressive Web App',
+  },
+];
+
 export default function DocsPage() {
   return (
     <DocsWrapper>
@@ -46,27 +71,11 @@ export default function DocsPage() {
         <div className="mb-16">
           <h3
             id="key-features"
-            className="mb-3 mt-6 text-xl font-bold text-light-text-primary dark:text-dark-text-primary"
+            className="mb-6 mt-6 text-xl font-bold text-light-text-primary dark:text-dark-text-primary"
           >
             Key Features
           </h3>
-          <ul className="ml-6 list-disc space-y-2 text-light-text-primary/90 dark:text-dark-text-primary/90">
-            <li>
-              <strong>Web Scraping</strong>: Scrape novels from Chinese websites
-            </li>
-            <li>
-              <strong>Text Formatting</strong>: Convert between Traditional and Simplified Chinese
-            </li>
-            <li>
-              <strong>Reading Interface</strong>: Clean, responsive UI for reading novels
-            </li>
-            <li>
-              <strong>Chapter Navigation</strong>: Easy navigation between chapters
-            </li>
-            <li>
-              <strong>PWA Support</strong>: Install as a Progressive Web App
-            </li>
-          </ul>
+          <KeyFeatures features={features} />
         </div>
 
         <h2
