@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import FadeIn from '@/app/components/tools/Animation/FadeIn';
 import { ChapterData } from '@/app/lib/chapter';
 import { useSettings } from '@/app/context/SettingsContext';
 import { Book } from '@/app/lib/book';
-
+import NavBar from '@/app/components/Headers/NavBar';
 interface ChapterDetailProps {
   bookId: string;
   chapter: ChapterData;
@@ -49,6 +49,27 @@ export default function ChapterDetail({
   const { fontSize, convertText, autoNext } = useSettings();
   const router = useRouter();
   const footerRef = useRef<HTMLDivElement>(null);
+  const [showNavBar, setShowNavBar] = useState(false);
+  const handleShowNavBar = () => {
+    if (window.scrollY >= 300) {
+      setShowNavBar(!showNavBar);
+    } else {
+      setShowNavBar(false);
+    }
+  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowNavBar(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Call once to set initial state
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     // Save current chapter to localStorage
@@ -170,7 +191,12 @@ export default function ChapterDetail({
   }, [autoNext, nextChapterExists, bookId, chapterIndex, router]);
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 pb-12 md:px-8 ">
+    <div className="container relative mx-auto max-w-4xl px-4 pb-12 md:px-8">
+      <div
+        className={`fixed left-0 top-0 z-50 w-full transition-opacity duration-1000 ease-in-out ${showNavBar ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
+      >
+        <NavBar />
+      </div>
       <FadeIn direction="left">
         <div className="">
           <Link
@@ -192,7 +218,7 @@ export default function ChapterDetail({
         </div>
       </FadeIn>
 
-      <div className="rounded-lg bg-light-paper p-6 shadow-lg dark:bg-dark-paper">
+      <div className="rounded-lg bg-light-paper p-6 shadow-lg dark:bg-dark-paper" onClick={handleShowNavBar}>
         <div className="prose prose-lg max-w-none dark:prose-invert">
           {formatContent(chapter.content, fontSize, convertText)}
         </div>
