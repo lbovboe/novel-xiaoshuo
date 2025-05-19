@@ -42,7 +42,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
   ];
 
   return (
-    <m.div className="space-y-2.5" initial="hidden" animate="visible" variants={containerVariants}>
+    <m.div className="space-y-2.5 relative" initial="hidden" animate="visible" variants={containerVariants}>
       {items.map((item, index) => {
         const gradientColor = iconColors[index % iconColors.length];
         const number = index + 1;
@@ -50,7 +50,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
         return (
           <m.div
             key={index}
-            className={`hover:bg-doc_bg-accent_light dark:hover:bg-doc_bg-accent_dark group flex ${type === 'number' ? 'items-start' : 'items-center'} items-start gap-3 rounded-lg p-2 transition-all duration-200`}
+            className={`hover:bg-doc_bg-accent_light overflow-hidden dark:hover:bg-doc_bg-accent_dark group flex ${type === 'number' ? 'items-start' : 'items-center'} items-start gap-3 rounded-lg p-4 transition-all duration-200`}
             variants={itemVariants}
           >
             <div className="relative flex-shrink-0">
