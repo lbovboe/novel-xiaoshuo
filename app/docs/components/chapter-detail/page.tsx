@@ -98,7 +98,7 @@ export default function ComponentsPage() {
               size and text conversion <br></br> (e.g., simplified/traditional Chinese).
               <DocCodeBlock
                 code={`function formatContent(content: string, fontSize: string, convertText: (text: string) => string) {
-  const paragraphs = content.split('\n').filter((p) => p.trim().length > 0);
+  const paragraphs = content.split('\\n').filter((p) => p.trim().length > 0);
   let fontSizeClass = 'text-lg';
   if (fontSize === 'small') fontSizeClass = 'text-base';
   if (fontSize === 'large') fontSizeClass = 'text-xl';
@@ -116,7 +116,7 @@ export default function ComponentsPage() {
               <strong>内容格式化</strong>: 将章节内容分段，并应用用户选择的字体大小和文本转换（如简繁体）。
               <DocCodeBlock
                 code={`function formatContent(content: string, fontSize: string, convertText: (text: string) => string) {
-  const paragraphs = content.split('\n').filter((p) => p.trim().length > 0);
+  const paragraphs = content.split('\\n').filter((p) => p.trim().length > 0);
   let fontSizeClass = 'text-lg';
   if (fontSize === 'small') fontSizeClass = 'text-base';
   if (fontSize === 'large') fontSizeClass = 'text-xl';

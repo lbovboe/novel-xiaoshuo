@@ -63,7 +63,7 @@ const navItems: NavItem[] = [
       {
         label: {
           en: 'Chapter Detail ',
-          zh: '书内容页面',
+          zh: '章节内容组件',
         },
         href: '/docs/components/chapter-detail',
         icon: <FaCode className="text-doc_icon-light dark:text-doc_icon-dark" />,
