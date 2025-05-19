@@ -164,7 +164,7 @@ export default function ComponentsPage() {
           ),
           language === 'en' ? (
             <>
-              <strong>Persistent Progress</strong>: Saves the user's current chapter and reading progress in{' '}
+              <strong>Persistent Progress</strong>: Saves the user&#39;s current chapter and reading progress in{' '}
               <code>localStorage</code>, with logic to handle storage quota and cleanup.
               <DocCodeBlock
                 code={`useEffect(() => {
