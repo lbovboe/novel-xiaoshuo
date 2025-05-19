@@ -54,6 +54,32 @@ const navItems: NavItem[] = [
   },
   {
     label: {
+      en: 'Context',
+      zh: '上下文',
+    },
+    href: '/docs/context',
+    icon: <FaCogs className="text-doc_icon-light dark:text-doc_icon-dark" />,
+    more: [
+      {
+        label: {
+          en: 'BookSettingsContext',
+          zh: '书籍设置上下文',
+        },
+        href: '/docs/context/book-settings',
+        icon: <FaCogs className="text-doc_icon-light dark:text-doc_icon-dark" />,
+      },
+      {
+        label: {
+          en: 'ThemeContext',
+          zh: '主题上下文',
+        },
+        href: '/docs/context/theme',
+        icon: <FaCogs className="text-doc_icon-light dark:text-doc_icon-dark" />,
+      },
+    ],
+  },
+  {
+    label: {
       en: 'UI Components',
       zh: 'UI 组件',
     },
@@ -70,6 +96,7 @@ const navItems: NavItem[] = [
       },
     ],
   },
+
   {
     label: {
       en: 'Development',
