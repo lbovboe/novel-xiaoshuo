@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { ThemeProvider } from '@/app/context/ThemeContext';
 import { SettingsProvider } from '@/app/context/SettingsContext';
 import MotionConfig from '@/app/components/Animation/MotionConfig';
-import PWARegister from '@/app/pwa';
 import './globals.css';
 import './reset.css';
 import Navbar from '@/app/components/Headers/NavBar';
@@ -35,16 +34,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     title: '最爱小说网',
-    siteName:'最爱小说网',
+    siteName: '最爱小说网',
     description: '最爱小说网提供免费全本小说给大众网友, 资源来源各个网友上传',
-    url:'https://novel-xiaoshuo.vercel.app/',
-    locale: "zh_CN",
+    url: 'https://novel-xiaoshuo.vercel.app/',
+    locale: 'zh_CN',
     images: [
       {
-        url: "/icons/opengraph-image.png",
+        url: '/icons/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: "Ace Coding Academy",
+        alt: 'Ace Coding Academy',
       },
     ],
   },
@@ -92,7 +91,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Navbar />
               <main className="flex-grow">{children}</main>
               <FooterWrapper />
-              <PWARegister />
             </MotionConfig>
           </SettingsProvider>
         </ThemeProvider>

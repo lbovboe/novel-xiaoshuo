@@ -10,6 +10,12 @@ const config = withPWA({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
+  // Add these properties
+  runtimeCaching: [],
+  buildExcludes: [/middleware-manifest\.json$/],
+  directoryIndex: '/',
+  // Make sure service worker is at the root level
+  sw: 'sw.js',
 })(nextConfig);
 
 export default config;
