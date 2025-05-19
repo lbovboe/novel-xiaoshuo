@@ -26,7 +26,7 @@ export default function DocLayout({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mx-auto max-w-5xl px-4"
+      className="mx-auto max-w-5xl md:px-4"
     >
       {title && (
         <div className="mb-8">
