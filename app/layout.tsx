@@ -35,7 +35,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     title: '最爱小说网',
-    description: '最爱小说网',
+    siteName:'最爱小说网',
+    description: '最爱小说网提供免费全本小说给大众网友, 资源来源各个网友上传',
+    url:'https://novel-xiaoshuo.vercel.app/',
+    locale: "zh_CN",
+    images: [
+      {
+        url: "/icons/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ace Coding Academy",
+      },
+    ],
   },
   icons: {
     icon: [
