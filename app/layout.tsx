@@ -20,6 +20,7 @@ export const viewport: Viewport = {
 
 // Define metadata for the application
 export const metadata: Metadata = {
+  metadataBase: new URL('https://novel-xiaoshuo.vercel.app/'),
   title: '最爱小说网',
   description: '最爱小说网',
   manifest: '/manifest.json',
