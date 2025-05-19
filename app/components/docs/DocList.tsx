@@ -42,7 +42,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
   ];
 
   return (
-    <m.div className="space-y-2.5 relative" initial="hidden" animate="visible" variants={containerVariants}>
+    <m.div className="relative space-y-2.5" initial="hidden" animate="visible" variants={containerVariants}>
       {items.map((item, index) => {
         const gradientColor = iconColors[index % iconColors.length];
         const number = index + 1;
@@ -50,7 +50,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
         return (
           <m.div
             key={index}
-            className={`hover:bg-doc_bg-accent_light overflow-hidden dark:hover:bg-doc_bg-accent_dark group flex ${type === 'number' ? 'items-start' : 'items-center'} items-start gap-3 rounded-lg p-4 transition-all duration-200`}
+            className={`group flex hover:bg-doc_bg-accent_light dark:hover:bg-doc_bg-accent_dark ${type === 'number' ? 'items-start' : 'items-center'} items-start gap-3 rounded-lg p-4 transition-all duration-200`}
             variants={itemVariants}
           >
             <div className="relative flex-shrink-0">
@@ -58,7 +58,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
                 className={`absolute -inset-1 rounded-full bg-gradient-to-br ${gradientColor} opacity-75 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md`}
               ></div>
               <div
-                className={`relative flex ${type === 'number' ? 'h-4 w-4' : 'h-2 w-2'} bg-doc_bg-light dark:bg-doc_bg-dark items-center justify-center rounded-full`}
+                className={`relative flex ${type === 'number' ? 'h-4 w-4' : 'h-2 w-2'} items-center justify-center rounded-full bg-doc_bg-light dark:bg-doc_bg-dark`}
               >
                 <div className="relative">
                   <FaCircle
@@ -66,14 +66,14 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
                     className={`bg-gradient-to-br bg-clip-text text-transparent ${gradientColor}`}
                   />
                   {type === 'number' && (
-                    <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark absolute inset-0 flex items-center justify-center text-sm">
+                    <div className="absolute inset-0 flex items-center justify-center text-sm text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
                       {number}
                     </div>
                   )}
                 </div>
               </div>
             </div>
-            <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark w-full">{item}</div>
+            <div className="w-full min-w-0 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">{item}</div>
           </m.div>
         );
       })}
