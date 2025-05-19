@@ -92,6 +92,22 @@ export default function DocSidebar() {
     setMounted(true);
   }, []);
 
+  // Set expanded state based on pathname after mount
+  useEffect(() => {
+    if (!mounted) return;
+    if (pathname === '/docs/components') {
+      setExpanded({});
+    } else {
+      // Find if any navItem with 'more' matches the current pathname
+      const parentWithMore = navItems.find((item) => item.more && item.more.some((sub) => sub.href === pathname));
+      if (parentWithMore) {
+        setExpanded({ [parentWithMore.href]: true });
+      } else {
+        setExpanded({});
+      }
+    }
+  }, [pathname, mounted]);
+
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'zh' : 'en');
   };
