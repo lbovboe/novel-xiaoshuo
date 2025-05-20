@@ -66,6 +66,49 @@ setAutoNext(true);`,
         <DocSection title={content.sections.features.title} delay={1}>
           <DocList items={content.sections.features.items} />
         </DocSection>
+        <DocSection title={language === 'en' ? 'Setup & Integration' : '设置与集成'} delay={1.5}>
+          <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+            {language === 'en'
+              ? 'To use the BookSettingsContext (SettingsContext), wrap your application with the SettingsProvider and use the useSettings hook to access and update user reading preferences globally.'
+              : '要使用 BookSettingsContext（SettingsContext），请用 SettingsProvider 包裹应用，并通过 useSettings 钩子全局访问和更新用户阅读偏好。'}
+          </p>
+          <DocCodeBlock
+            code={`// SettingsContext setup (app/context/SettingsContext.tsx)
+import { createContext, useContext, useState } from 'react';
+
+const SettingsContext = createContext();
+
+export function SettingsProvider({ children }) {
+  // ...state and logic...
+  return (
+    <SettingsContext.Provider value={{ /* values */ }}>
+      {children}
+    </SettingsContext.Provider>
+  );
+}
+
+export function useSettings() {
+  return useContext(SettingsContext);
+}`}
+          />
+          <p className="mb-2 mt-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+            {language === 'en'
+              ? 'Integrate the provider at the root of your app (e.g., in app/layout.tsx):'
+              : '在应用根部集成 Provider（如 app/layout.tsx）：'}
+          </p>
+          <DocCodeBlock
+            code={`// app/layout.tsx
+import { SettingsProvider } from '@/app/context/SettingsContext';
+
+export default function RootLayout({ children }) {
+  return (
+    <SettingsProvider>
+      {children}
+    </SettingsProvider>
+  );
+}`}
+          />
+        </DocSection>
         <DocSection title={content.sections.usage.title} delay={2}>
           <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
             {content.sections.usage.description}
