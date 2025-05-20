@@ -59,6 +59,67 @@ toggleTheme();`,
         <DocSection title={content.sections.features.title} delay={1}>
           <DocList items={content.sections.features.items} />
         </DocSection>
+        <DocSection title={language === 'en' ? 'Setup & Integration' : '设置与集成'} delay={1.5}>
+          <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+            {language === 'en'
+              ? 'To use the ThemeContext, wrap your application with the ThemeProvider and use the useTheme hook to access and toggle the theme globally.'
+              : '要使用 ThemeContext，请用 ThemeProvider 包裹应用，并通过 useTheme 钩子全局访问和切换主题。'}
+          </p>
+          <DocCodeBlock
+            code={`// app/context/ThemeContext.tsx
+import { createContext, useState, useEffect, useContext } from 'react';
+
+const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setTheme(storedTheme);
+      document.documentElement.classList.add(storedTheme);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark');
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error('useTheme must be used within a ThemeProvider');
+  return context;
+}`}
+          />
+          <p className="mb-2 mt-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+            {language === 'en'
+              ? 'Integrate the provider at the root of your app (e.g., in app/layout.tsx):'
+              : '在应用根部集成 Provider（如 app/layout.tsx）：'}
+          </p>
+          <DocCodeBlock
+            code={`// app/layout.tsx
+import { ThemeProvider } from '@/app/context/ThemeContext';
+
+export default function RootLayout({ children }) {
+  return (
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
+  );
+}`}
+          />
+        </DocSection>
         <DocSection title={content.sections.usage.title} delay={2}>
           <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
             {content.sections.usage.description}
