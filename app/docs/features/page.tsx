@@ -224,14 +224,7 @@ export default function FeaturesPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.webScraping.description}
           </p>
-          <DocList
-            items={content.sections.webScraping.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.webScraping.items} />
 
           <DocSubSection title={content.sections.webScraping.subSections.scraperUsage.title}>
             <DocCodeBlock code={content.sections.webScraping.subSections.scraperUsage.code} />
@@ -242,42 +235,21 @@ export default function FeaturesPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.textFormatting.description}
           </p>
-          <DocList
-            items={content.sections.textFormatting.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.textFormatting.items} />
         </DocSection>
 
         <DocSection title={content.sections.readingInterface.title} delay={2}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.readingInterface.description}
           </p>
-          <DocList
-            items={content.sections.readingInterface.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.readingInterface.items} />
         </DocSection>
 
         <DocSection title={content.sections.pwaSupport.title} delay={3}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.pwaSupport.description}
           </p>
-          <DocList
-            items={content.sections.pwaSupport.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.pwaSupport.items} />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

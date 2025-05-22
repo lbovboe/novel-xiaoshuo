@@ -63,14 +63,7 @@ export default function ContextPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.contextCategories.description}
           </p>
-          <DocList
-            items={content.sections.contextCategories.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.contextCategories.items} />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

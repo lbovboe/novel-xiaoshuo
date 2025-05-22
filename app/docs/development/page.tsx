@@ -229,27 +229,11 @@ export default function DevelopmentPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.projectStructure.description}
           </p>
-          <DocList
-            type="number"
-            items={content.sections.projectStructure.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList type="number" items={content.sections.projectStructure.items} />
         </DocSection>
 
         <DocSection title={content.sections.gettingStarted.title} delay={1}>
-          <DocList
-            type="number"
-            items={content.sections.gettingStarted.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList type="number" items={content.sections.gettingStarted.items} />
         </DocSection>
 
         <DocSection title={content.sections.coreFunctionality.title} delay={2}>
@@ -257,42 +241,21 @@ export default function DevelopmentPage() {
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               {content.sections.coreFunctionality.subSections.webScraper.description}
             </p>
-            <DocList
-              items={content.sections.coreFunctionality.subSections.webScraper.items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-            />
+            <DocList items={content.sections.coreFunctionality.subSections.webScraper.items} />
           </DocSubSection>
 
           <DocSubSection title={content.sections.coreFunctionality.subSections.textFormatter.title} delay={1}>
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               {content.sections.coreFunctionality.subSections.textFormatter.description}
             </p>
-            <DocList
-              items={content.sections.coreFunctionality.subSections.textFormatter.items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-            />
+            <DocList items={content.sections.coreFunctionality.subSections.textFormatter.items} />
           </DocSubSection>
 
           <DocSubSection title={content.sections.coreFunctionality.subSections.webApplication.title} delay={2}>
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               {content.sections.coreFunctionality.subSections.webApplication.description}
             </p>
-            <DocList
-              items={content.sections.coreFunctionality.subSections.webApplication.items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-            />
+            <DocList items={content.sections.coreFunctionality.subSections.webApplication.items} />
           </DocSubSection>
         </DocSection>
 

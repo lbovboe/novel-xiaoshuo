@@ -193,40 +193,19 @@ export default function UserGuidePage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.gettingStarted.description}
           </p>
-          <DocList
-            items={content.sections.gettingStarted.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.gettingStarted.items} />
         </DocSection>
 
         <DocSection title={content.sections.readingNovel.title} delay={1}>
           <DocSubSection title={content.sections.readingNovel.subSections.navigation.title} delay={0}>
-            <DocList
-              items={content.sections.readingNovel.subSections.navigation.items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-            />
+            <DocList items={content.sections.readingNovel.subSections.navigation.items} />
           </DocSubSection>
 
           <DocSubSection title={content.sections.readingNovel.subSections.readingSettings.title} delay={1}>
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-3">
               {content.sections.readingNovel.subSections.readingSettings.description}
             </p>
-            <DocList
-              items={content.sections.readingNovel.subSections.readingSettings.items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-            />
+            <DocList items={content.sections.readingNovel.subSections.readingSettings.items} />
           </DocSubSection>
         </DocSection>
 
@@ -234,45 +213,21 @@ export default function UserGuidePage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-3">
             {content.sections.importingNovels.description}
           </p>
-          <DocList
-            type="number"
-            items={content.sections.importingNovels.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList type="number" items={content.sections.importingNovels.items} />
         </DocSection>
 
         <DocSection title={content.sections.convertingText.title} delay={3}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-3">
             {content.sections.convertingText.description}
           </p>
-          <DocList
-            type="number"
-            items={content.sections.convertingText.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList type="number" items={content.sections.convertingText.items} />
         </DocSection>
 
         <DocSection title={content.sections.usingAsPWA.title} delay={4}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-3">
             {content.sections.usingAsPWA.description}
           </p>
-          <DocList
-            type="number"
-            items={content.sections.usingAsPWA.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList type="number" items={content.sections.usingAsPWA.items} />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

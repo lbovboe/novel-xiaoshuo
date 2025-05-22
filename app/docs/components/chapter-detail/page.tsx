@@ -284,37 +284,15 @@ export default function ComponentsPage() {
         </DocSection>
 
         <DocSection title={content.sections.props.title} delay={1}>
-          <DocList
-            items={content.sections.props.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.props.items} />
         </DocSection>
 
         <DocSection title={content.sections.features.title} delay={2}>
-          <DocList
-            type="number"
-            items={content.sections.features.items.map((item, idx) => (
-              <>
-                <div className="mb-2">{item.description}</div>
-                {item.codeBlock && item.codeBlock}
-              </>
-            ))}
-          />
+          <DocList type="number" items={content.sections.features.items} />
         </DocSection>
 
         <DocSection title={content.sections.notes.title} delay={3}>
-          <DocList
-            items={content.sections.notes.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.notes.items} />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

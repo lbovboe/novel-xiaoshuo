@@ -179,28 +179,14 @@ export default function ComponentsPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.componentCategories.description}
           </p>
-          <DocList
-            items={content.sections.componentCategories.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.componentCategories.items} />
         </DocSection>
 
         <DocSection title={content.sections.themeManagement.title} delay={1}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.themeManagement.description}
           </p>
-          <DocList
-            items={content.sections.themeManagement.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.themeManagement.items} />
         </DocSection>
 
         <DocSection title={content.sections.headerComponents.title} delay={2}>
@@ -213,14 +199,7 @@ export default function ComponentsPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.bookComponents.description}
           </p>
-          <DocList
-            items={content.sections.bookComponents.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.bookComponents.items} />
         </DocSection>
 
         <DocSection title={content.sections.animationComponents.title} delay={4}>
@@ -233,14 +212,7 @@ export default function ComponentsPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.toolsComponents.description}
           </p>
-          <DocList
-            items={content.sections.toolsComponents.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.toolsComponents.items} />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

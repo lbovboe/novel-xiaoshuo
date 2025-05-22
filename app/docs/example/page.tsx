@@ -58,45 +58,21 @@ export default function ExamplePage() {
             <h2 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold">
               {content.sections.withIcons.title}
             </h2>
-            <DocList
-              items={items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-              type="icon"
-            />
+            <DocList items={items} type="icon" />
           </div>
 
           <div>
             <h2 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold">
               {content.sections.withBullets.title}
             </h2>
-            <DocList
-              items={items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-              type="bullet"
-            />
+            <DocList items={items} type="bullet" />
           </div>
 
           <div>
             <h2 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold">
               {content.sections.withNumbers.title}
             </h2>
-            <DocList
-              items={items.map((item) => (
-                <>
-                  {item.description}
-                  {item.codeBlock ? item.codeBlock : null}
-                </>
-              ))}
-              type="number"
-            />
+            <DocList items={items} type="number" />
           </div>
         </div>
       </DocLayout>

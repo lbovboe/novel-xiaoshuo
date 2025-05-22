@@ -63,14 +63,7 @@ toggleTheme();`,
           </p>
         </DocSection>
         <DocSection title={content.sections.features.title} delay={1}>
-          <DocList
-            items={content.sections.features.items.map((item) => (
-              <>
-                {item.description}
-                {item.codeBlock ? item.codeBlock : null}
-              </>
-            ))}
-          />
+          <DocList items={content.sections.features.items} />
         </DocSection>
         <DocSection title={language === 'en' ? 'Setup & Integration' : '设置与集成'} delay={1.5}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">

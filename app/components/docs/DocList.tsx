@@ -4,13 +4,16 @@ import React from 'react';
 import { m } from 'framer-motion';
 import { FaCircle } from 'react-icons/fa';
 
+type DocListItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
+
 type DocListProps = {
-  items: React.ReactNode[];
+  items: DocListItem[];
   type?: 'bullet' | 'number' | 'icon';
   delay?: number;
 };
 
 export default function DocList({ items, type = 'icon', delay = 0 }: DocListProps) {
+  console.log('🚀 ~ DocList ~ items:', items);
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,30 +58,40 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
         return (
           <m.div
             key={index}
-            className={`group flex hover:bg-doc_bg-accent_light dark:hover:bg-doc_bg-accent_dark ${type === 'number' ? 'items-start' : 'items-center'} gap-3 rounded-lg transition-all duration-200 md:p-4`}
+            className={`group hover:bg-doc_bg-accent_light dark:hover:bg-doc_bg-accent_dark rounded-lg transition-all duration-200 md:p-4`}
             variants={itemVariants}
           >
-            <div className={`relative flex-shrink-0 ${type === 'number' ? 'hidden md:block pt-1' : ''}`}>
-              <div
-                className={`absolute -inset-1 rounded-full bg-gradient-to-br ${gradientColor} opacity-75 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md`}
-              ></div>
-              <div
-                className={`relative flex ${type === 'number' ? 'h-4 w-4' : 'h-2 w-2'} items-center justify-center rounded-full bg-doc_bg-light dark:bg-doc_bg-dark`}
-              >
-                <div className="relative">
-                  <FaCircle
-                    size={type === 'number' ? 8 : 4}
-                    className={`bg-gradient-to-br bg-clip-text text-transparent ${gradientColor}`}
-                  />
-                  {type === 'number' && (
-                    <div className="absolute inset-0 flex items-center justify-center text-sm text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
-                      {number}
-                    </div>
-                  )}
+            <div className="flex items-center gap-4">
+              <div className={`relative flex-shrink-0 ${type === 'number' ? 'hidden md:block' : ''}`}>
+                <div
+                  className={`absolute -inset-1 rounded-full bg-gradient-to-br ${gradientColor} opacity-75 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md`}
+                ></div>
+                <div
+                  className={`relative flex ${type === 'number' ? 'h-4 w-4' : 'h-2 w-2'} bg-doc_bg-light dark:bg-doc_bg-dark items-center justify-center rounded-full`}
+                >
+                  <div className="relative">
+                    <FaCircle
+                      size={type === 'number' ? 8 : 4}
+                      className={`bg-gradient-to-br bg-clip-text text-transparent ${gradientColor}`}
+                    />
+                    {type === 'number' && (
+                      <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark absolute inset-0 flex items-center justify-center text-sm">
+                        {number}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
+              <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark w-full min-w-0">
+                {item.description}
+              </div>
             </div>
-            <div className="w-full min-w-0 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">{item}</div>
+
+            {item.codeBlock ? (
+              <div className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark w-full min-w-0">
+                {item.codeBlock}
+              </div>
+            ) : null}
           </m.div>
         );
       })}
