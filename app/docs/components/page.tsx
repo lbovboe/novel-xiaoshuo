@@ -6,6 +6,9 @@ import DocSection from '@/app/components/docs/DocSection';
 import DocList from '@/app/components/docs/DocList';
 import { useLanguage } from '@/app/components/docs/LanguageContext';
 
+// Type for DocList items with optional codeBlock
+type DocItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
+
 export default function ComponentsPage() {
   const { language } = useLanguage();
 
@@ -25,78 +28,78 @@ export default function ComponentsPage() {
             : '应用程序由以下几类组件构成：',
         items: [
           {
-            en: (
-              <>
-                <strong>UI Components</strong>: Generic UI elements
-              </>
-            ),
-            zh: (
-              <>
-                <strong>UI 组件</strong>: 通用 UI 元素
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>UI Components</strong>: Generic UI elements
+                </>
+              ) : (
+                <>
+                  <strong>UI 组件</strong>: 通用 UI 元素
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>Headers</strong>: Navigation and header components
-              </>
-            ),
-            zh: (
-              <>
-                <strong>页眉</strong>: 导航和页头组件
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>Headers</strong>: Navigation and header components
+                </>
+              ) : (
+                <>
+                  <strong>页眉</strong>: 导航和页头组件
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>Book Components</strong>: Book-specific UI elements
-              </>
-            ),
-            zh: (
-              <>
-                <strong>书籍组件</strong>: 书籍特定的 UI 元素
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>Book Components</strong>: Book-specific UI elements
+                </>
+              ) : (
+                <>
+                  <strong>书籍组件</strong>: 书籍特定的 UI 元素
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>Footer</strong>: Footer components
-              </>
-            ),
-            zh: (
-              <>
-                <strong>页脚</strong>: 页脚组件
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>Footer</strong>: Footer components
+                </>
+              ) : (
+                <>
+                  <strong>页脚</strong>: 页脚组件
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>Animation</strong>: Animation-related components
-              </>
-            ),
-            zh: (
-              <>
-                <strong>动画</strong>: 动画相关组件
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>Animation</strong>: Animation-related components
+                </>
+              ) : (
+                <>
+                  <strong>动画</strong>: 动画相关组件
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>Tools</strong>: Utility UI components
-              </>
-            ),
-            zh: (
-              <>
-                <strong>工具</strong>: 实用工具组件
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>Tools</strong>: Utility UI components
+                </>
+              ) : (
+                <>
+                  <strong>工具</strong>: 实用工具组件
+                </>
+              ),
           },
-        ],
+        ] as DocItem[],
       },
       themeManagement: {
         title: language === 'en' ? 'Theme Management' : '主题管理',
@@ -106,30 +109,30 @@ export default function ComponentsPage() {
             : '最爱小说网包含带有以下组件的主题系统：',
         items: [
           {
-            en: (
-              <>
-                <strong>ClientThemeWrapper</strong>: Manages theme on the client-side
-              </>
-            ),
-            zh: (
-              <>
-                <strong>客户端主题包装器</strong>: 管理客户端主题
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>ClientThemeWrapper</strong>: Manages theme on the client-side
+                </>
+              ) : (
+                <>
+                  <strong>客户端主题包装器</strong>: 管理客户端主题
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>ThemeMetadata</strong>: Handles theme-related metadata
-              </>
-            ),
-            zh: (
-              <>
-                <strong>主题元数据</strong>: 处理主题相关的元数据
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>ThemeMetadata</strong>: Handles theme-related metadata
+                </>
+              ) : (
+                <>
+                  <strong>主题元数据</strong>: 处理主题相关的元数据
+                </>
+              ),
           },
-        ],
+        ] as DocItem[],
       },
       headerComponents: {
         title: language === 'en' ? 'Header Components' : '页眉组件',
@@ -145,10 +148,10 @@ export default function ComponentsPage() {
             ? 'Book components are specifically designed for displaying and interacting with book content, including:'
             : '书籍组件专门为显示和交互书籍内容而设计，包括：',
         items: [
-          language === 'en' ? 'Chapter navigation' : '章节导航',
-          language === 'en' ? 'Reading interface' : '阅读界面',
-          language === 'en' ? 'Book metadata display' : '书籍元数据显示',
-        ],
+          { description: language === 'en' ? 'Chapter navigation' : '章节导航' },
+          { description: language === 'en' ? 'Reading interface' : '阅读界面' },
+          { description: language === 'en' ? 'Book metadata display' : '书籍元数据显示' },
+        ] as DocItem[],
       },
       animationComponents: {
         title: language === 'en' ? 'Animation Components' : '动画组件',
@@ -161,10 +164,10 @@ export default function ComponentsPage() {
         title: language === 'en' ? 'Tools Components' : '工具组件',
         description: language === 'en' ? 'Tool components offer utility functions like:' : '工具组件提供以下实用功能：',
         items: [
-          language === 'en' ? 'Text formatting controls' : '文本格式化控制',
-          language === 'en' ? 'Search functionality' : '搜索功能',
-          language === 'en' ? 'Settings management' : '设置管理',
-        ],
+          { description: language === 'en' ? 'Text formatting controls' : '文本格式化控制' },
+          { description: language === 'en' ? 'Search functionality' : '搜索功能' },
+          { description: language === 'en' ? 'Settings management' : '设置管理' },
+        ] as DocItem[],
       },
     },
   };
@@ -176,14 +179,28 @@ export default function ComponentsPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.componentCategories.description}
           </p>
-          <DocList items={content.sections.componentCategories.items.map((item) => item[language])} />
+          <DocList
+            items={content.sections.componentCategories.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
 
         <DocSection title={content.sections.themeManagement.title} delay={1}>
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.themeManagement.description}
           </p>
-          <DocList items={content.sections.themeManagement.items.map((item) => item[language])} />
+          <DocList
+            items={content.sections.themeManagement.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
 
         <DocSection title={content.sections.headerComponents.title} delay={2}>
@@ -196,7 +213,14 @@ export default function ComponentsPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.bookComponents.description}
           </p>
-          <DocList items={content.sections.bookComponents.items} />
+          <DocList
+            items={content.sections.bookComponents.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
 
         <DocSection title={content.sections.animationComponents.title} delay={4}>
@@ -209,7 +233,14 @@ export default function ComponentsPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.toolsComponents.description}
           </p>
-          <DocList items={content.sections.toolsComponents.items} />
+          <DocList
+            items={content.sections.toolsComponents.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

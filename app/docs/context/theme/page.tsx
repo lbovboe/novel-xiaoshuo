@@ -7,6 +7,9 @@ import DocList from '@/app/components/docs/DocList';
 import DocCodeBlock from '@/app/components/docs/DocCodeBlock';
 import { useLanguage } from '@/app/components/docs/LanguageContext';
 
+// Type for DocList items with optional codeBlock
+type DocItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
+
 export default function ThemeContextPage() {
   const { language } = useLanguage();
 
@@ -27,10 +30,13 @@ export default function ThemeContextPage() {
       features: {
         title: language === 'en' ? 'Key Features' : '主要功能',
         items: [
-          language === 'en' ? 'Light and dark mode switching' : '明暗模式切换',
-          language === 'en' ? 'Persistent theme preference with localStorage' : '通过 localStorage 持久化主题偏好',
-          language === 'en' ? 'Easy access via useTheme hook' : '通过 useTheme 钩子轻松访问',
-        ],
+          { description: language === 'en' ? 'Light and dark mode switching' : '明暗模式切换' },
+          {
+            description:
+              language === 'en' ? 'Persistent theme preference with localStorage' : '通过 localStorage 持久化主题偏好',
+          },
+          { description: language === 'en' ? 'Easy access via useTheme hook' : '通过 useTheme 钩子轻松访问' },
+        ] as DocItem[],
       },
       usage: {
         title: language === 'en' ? 'Usage Example' : '用法示例',
@@ -52,15 +58,22 @@ toggleTheme();`,
     <DocsWrapper>
       <DocLayout title={content.title} description={content.description}>
         <DocSection title={content.sections.overview.title} delay={0}>
-          <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.overview.description}
           </p>
         </DocSection>
         <DocSection title={content.sections.features.title} delay={1}>
-          <DocList items={content.sections.features.items} />
+          <DocList
+            items={content.sections.features.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
         <DocSection title={language === 'en' ? 'Setup & Integration' : '设置与集成'} delay={1.5}>
-          <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {language === 'en'
               ? 'To use the ThemeContext, wrap your application with the ThemeProvider and use the useTheme hook to access and toggle the theme globally.'
               : '要使用 ThemeContext，请用 ThemeProvider 包裹应用，并通过 useTheme 钩子全局访问和切换主题。'}
@@ -102,7 +115,7 @@ export function useTheme() {
   return context;
 }`}
           />
-          <p className="mb-2 mt-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mt-4 mb-2">
             {language === 'en'
               ? 'Integrate the provider at the root of your app (e.g., in app/layout.tsx):'
               : '在应用根部集成 Provider（如 app/layout.tsx）：'}
@@ -121,7 +134,7 @@ export default function RootLayout({ children }) {
           />
         </DocSection>
         <DocSection title={content.sections.usage.title} delay={2}>
-          <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.usage.description}
           </p>
           <DocCodeBlock code={content.sections.usage.code} />

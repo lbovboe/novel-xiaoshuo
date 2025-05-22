@@ -8,6 +8,9 @@ import DocCodeBlock from '@/app/components/docs/DocCodeBlock';
 import DocList from '@/app/components/docs/DocList';
 import { useLanguage } from '@/app/components/docs/LanguageContext';
 
+// Type for DocList items with optional codeBlock
+type DocItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
+
 export default function DevelopmentPage() {
   const { language } = useLanguage();
 
@@ -26,105 +29,121 @@ export default function DevelopmentPage() {
             ? 'The project follows a standard Next.js application structure:'
             : '该项目遵循标准的 Next.js 应用程序结构：',
         items: [
-          language === 'en' ? (
-            <>
-              <strong>app/</strong>: Contains the Next.js app router components
-              <ul className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark ml-6 mt-2 list-disc space-y-1">
-                <li>
-                  <strong>components/</strong>: UI components organized by type
-                </li>
-                <li>
-                  <strong>lib/</strong>: Utility libraries
-                </li>
-                <li>
-                  <strong>context/</strong>: React context providers
-                </li>
-                <li>
-                  <strong>utils/</strong>: Helper functions
-                </li>
-                <li>
-                  <strong>types/</strong>: TypeScript type definitions
-                </li>
-              </ul>
-            </>
-          ) : (
-            <>
-              <strong>app/</strong>: 包含 Next.js 应用路由组件
-              <ul className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark ml-6 mt-2 list-disc space-y-1">
-                <li>
-                  <strong>components/</strong>: 按类型组织的 UI 组件
-                </li>
-                <li>
-                  <strong>lib/</strong>: 实用程序库
-                </li>
-                <li>
-                  <strong>context/</strong>: React 上下文提供者
-                </li>
-                <li>
-                  <strong>utils/</strong>: 辅助函数
-                </li>
-                <li>
-                  <strong>types/</strong>: TypeScript 类型定义
-                </li>
-              </ul>
-            </>
-          ),
-          language === 'en' ? (
-            <>
-              <strong>public/</strong>: Static assets
-            </>
-          ) : (
-            <>
-              <strong>public/</strong>: 静态资源
-            </>
-          ),
-          language === 'en' ? (
-            <>
-              <strong>scraper.js</strong>: Web scraping functionality
-            </>
-          ) : (
-            <>
-              <strong>scraper.js</strong>: 网页抓取功能
-            </>
-          ),
-          language === 'en' ? (
-            <>
-              <strong>format.js</strong>: Text formatting functionality
-            </>
-          ) : (
-            <>
-              <strong>format.js</strong>: 文本格式化功能
-            </>
-          ),
-        ],
+          {
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>app/</strong>: Contains the Next.js app router components
+                  <ul className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mt-2 ml-6 list-disc space-y-1">
+                    <li>
+                      <strong>components/</strong>: UI components organized by type
+                    </li>
+                    <li>
+                      <strong>lib/</strong>: Utility libraries
+                    </li>
+                    <li>
+                      <strong>context/</strong>: React context providers
+                    </li>
+                    <li>
+                      <strong>utils/</strong>: Helper functions
+                    </li>
+                    <li>
+                      <strong>types/</strong>: TypeScript type definitions
+                    </li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <strong>app/</strong>: 包含 Next.js 应用路由组件
+                  <ul className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mt-2 ml-6 list-disc space-y-1">
+                    <li>
+                      <strong>components/</strong>: 按类型组织的 UI 组件
+                    </li>
+                    <li>
+                      <strong>lib/</strong>: 实用程序库
+                    </li>
+                    <li>
+                      <strong>context/</strong>: React 上下文提供者
+                    </li>
+                    <li>
+                      <strong>utils/</strong>: 辅助函数
+                    </li>
+                    <li>
+                      <strong>types/</strong>: TypeScript 类型定义
+                    </li>
+                  </ul>
+                </>
+              ),
+          },
+          {
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>public/</strong>: Static assets
+                </>
+              ) : (
+                <>
+                  <strong>public/</strong>: 静态资源
+                </>
+              ),
+          },
+          {
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>scraper.js</strong>: Web scraping functionality
+                </>
+              ) : (
+                <>
+                  <strong>scraper.js</strong>: 网页抓取功能
+                </>
+              ),
+          },
+          {
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>format.js</strong>: Text formatting functionality
+                </>
+              ) : (
+                <>
+                  <strong>format.js</strong>: 文本格式化功能
+                </>
+              ),
+          },
+        ] as DocItem[],
       },
       gettingStarted: {
         title: language === 'en' ? 'Getting Started with Development' : '开发入门',
         items: [
-          language === 'en' ? 'Clone the repository' : '克隆仓库',
-          language === 'en' ? (
-            <>
-              Install dependencies:
-              <DocCodeBlock code="npm install" />
-            </>
-          ) : (
-            <>
-              安装依赖:
-              <DocCodeBlock code="npm install" />
-            </>
-          ),
-          language === 'en' ? (
-            <>
-              Start the development server:
-              <DocCodeBlock code="npm run dev" />
-            </>
-          ) : (
-            <>
-              启动开发服务器:
-              <DocCodeBlock code="npm run dev" />
-            </>
-          ),
-        ],
+          { description: language === 'en' ? 'Clone the repository' : '克隆仓库' },
+          {
+            description:
+              language === 'en' ? (
+                <>
+                  <span>Install dependencies:</span>
+                </>
+              ) : (
+                <>
+                  <span>安装依赖:</span>
+                </>
+              ),
+            codeBlock: <DocCodeBlock code="npm install" />,
+          },
+          {
+            description:
+              language === 'en' ? (
+                <>
+                  <span>Start the development server:</span>
+                </>
+              ) : (
+                <>
+                  <span>启动开发服务器:</span>
+                </>
+              ),
+            codeBlock: <DocCodeBlock code="npm run dev" />,
+          },
+        ] as DocItem[],
       },
       coreFunctionality: {
         title: language === 'en' ? 'Core Functionality' : '核心功能',
@@ -145,10 +164,13 @@ export default function DevelopmentPage() {
                 </>
               ),
             items: [
-              language === 'en' ? 'axios for HTTP requests' : 'axios 用于 HTTP 请求',
-              language === 'en' ? 'cheerio for HTML parsing' : 'cheerio 用于 HTML 解析',
-              language === 'en' ? 'iconv-lite for character encoding conversion' : 'iconv-lite 用于字符编码转换',
-            ],
+              { description: language === 'en' ? 'axios for HTTP requests' : 'axios 用于 HTTP 请求' },
+              { description: language === 'en' ? 'cheerio for HTML parsing' : 'cheerio 用于 HTML 解析' },
+              {
+                description:
+                  language === 'en' ? 'iconv-lite for character encoding conversion' : 'iconv-lite 用于字符编码转换',
+              },
+            ] as DocItem[],
           },
           textFormatter: {
             title: language === 'en' ? 'Text Formatter' : '文本格式化器',
@@ -165,22 +187,27 @@ export default function DevelopmentPage() {
                 </>
               ),
             items: [
-              language === 'en'
-                ? 'Converting between Traditional and Simplified Chinese'
-                : '在繁体中文和简体中文之间转换',
-              language === 'en' ? 'Cleaning up text formatting' : '清理文本格式',
-              language === 'en' ? 'Applying custom formatting rules' : '应用自定义格式规则',
-            ],
+              {
+                description:
+                  language === 'en'
+                    ? 'Converting between Traditional and Simplified Chinese'
+                    : '在繁体中文和简体中文之间转换',
+              },
+              { description: language === 'en' ? 'Cleaning up text formatting' : '清理文本格式' },
+              { description: language === 'en' ? 'Applying custom formatting rules' : '应用自定义格式规则' },
+            ] as DocItem[],
           },
           webApplication: {
             title: language === 'en' ? 'Web Application' : '网络应用',
             description: language === 'en' ? 'The Next.js application provides:' : 'Next.js 应用程序提供：',
             items: [
-              language === 'en' ? 'A responsive UI for reading novels' : '用于阅读小说的响应式用户界面',
-              language === 'en' ? 'PWA support for offline reading' : '支持离线阅读的 PWA',
-              language === 'en' ? 'Theme customization' : '主题定制',
-              language === 'en' ? 'Reading progress tracking' : '阅读进度跟踪',
-            ],
+              {
+                description: language === 'en' ? 'A responsive UI for reading novels' : '用于阅读小说的响应式用户界面',
+              },
+              { description: language === 'en' ? 'PWA support for offline reading' : '支持离线阅读的 PWA' },
+              { description: language === 'en' ? 'Theme customization' : '主题定制' },
+              { description: language === 'en' ? 'Reading progress tracking' : '阅读进度跟踪' },
+            ] as DocItem[],
           },
         },
       },
@@ -202,11 +229,27 @@ export default function DevelopmentPage() {
           <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.projectStructure.description}
           </p>
-          <DocList type="number" items={content.sections.projectStructure.items} />
+          <DocList
+            type="number"
+            items={content.sections.projectStructure.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
 
         <DocSection title={content.sections.gettingStarted.title} delay={1}>
-          <DocList type="number" items={content.sections.gettingStarted.items} />
+          <DocList
+            type="number"
+            items={content.sections.gettingStarted.items.map((item) => (
+              <>
+                {item.description}
+                {item.codeBlock ? item.codeBlock : null}
+              </>
+            ))}
+          />
         </DocSection>
 
         <DocSection title={content.sections.coreFunctionality.title} delay={2}>
@@ -214,21 +257,42 @@ export default function DevelopmentPage() {
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               {content.sections.coreFunctionality.subSections.webScraper.description}
             </p>
-            <DocList items={content.sections.coreFunctionality.subSections.webScraper.items} />
+            <DocList
+              items={content.sections.coreFunctionality.subSections.webScraper.items.map((item) => (
+                <>
+                  {item.description}
+                  {item.codeBlock ? item.codeBlock : null}
+                </>
+              ))}
+            />
           </DocSubSection>
 
           <DocSubSection title={content.sections.coreFunctionality.subSections.textFormatter.title} delay={1}>
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               {content.sections.coreFunctionality.subSections.textFormatter.description}
             </p>
-            <DocList items={content.sections.coreFunctionality.subSections.textFormatter.items} />
+            <DocList
+              items={content.sections.coreFunctionality.subSections.textFormatter.items.map((item) => (
+                <>
+                  {item.description}
+                  {item.codeBlock ? item.codeBlock : null}
+                </>
+              ))}
+            />
           </DocSubSection>
 
           <DocSubSection title={content.sections.coreFunctionality.subSections.webApplication.title} delay={2}>
             <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
               {content.sections.coreFunctionality.subSections.webApplication.description}
             </p>
-            <DocList items={content.sections.coreFunctionality.subSections.webApplication.items} />
+            <DocList
+              items={content.sections.coreFunctionality.subSections.webApplication.items.map((item) => (
+                <>
+                  {item.description}
+                  {item.codeBlock ? item.codeBlock : null}
+                </>
+              ))}
+            />
           </DocSubSection>
         </DocSection>
 

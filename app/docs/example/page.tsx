@@ -6,25 +6,28 @@ import DocLayout from '@/app/components/docs/DocLayout';
 import DocList from '@/app/components/docs/DocList';
 import { useLanguage } from '@/app/components/docs/LanguageContext';
 
+// Type for DocList items with optional codeBlock
+type DocItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
+
 export default function ExamplePage() {
   const { language } = useLanguage();
 
   // Example items based on language
-  const items =
+  const items: DocItem[] =
     language === 'en'
       ? [
-          'This is the first list item with an icon',
-          'This is the second list item with an icon',
-          'This is the third list item with an icon',
-          'This is the fourth list item with an icon',
-          'This is the fifth list item with an icon',
+          { description: 'This is the first list item with an icon' },
+          { description: 'This is the second list item with an icon' },
+          { description: 'This is the third list item with an icon' },
+          { description: 'This is the fourth list item with an icon' },
+          { description: 'This is the fifth list item with an icon' },
         ]
       : [
-          '这是第一个带图标的列表项',
-          '这是第二个带图标的列表项',
-          '这是第三个带图标的列表项',
-          '这是第四个带图标的列表项',
-          '这是第五个带图标的列表项',
+          { description: '这是第一个带图标的列表项' },
+          { description: '这是第二个带图标的列表项' },
+          { description: '这是第三个带图标的列表项' },
+          { description: '这是第四个带图标的列表项' },
+          { description: '这是第五个带图标的列表项' },
         ];
 
   // Page content based on selected language
@@ -55,21 +58,45 @@ export default function ExamplePage() {
             <h2 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold">
               {content.sections.withIcons.title}
             </h2>
-            <DocList items={items} type="icon" />
+            <DocList
+              items={items.map((item) => (
+                <>
+                  {item.description}
+                  {item.codeBlock ? item.codeBlock : null}
+                </>
+              ))}
+              type="icon"
+            />
           </div>
 
           <div>
             <h2 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold">
               {content.sections.withBullets.title}
             </h2>
-            <DocList items={items} type="bullet" />
+            <DocList
+              items={items.map((item) => (
+                <>
+                  {item.description}
+                  {item.codeBlock ? item.codeBlock : null}
+                </>
+              ))}
+              type="bullet"
+            />
           </div>
 
           <div>
             <h2 className="text-doc_text-heading_light dark:text-doc_text-heading_dark mb-4 text-xl font-bold">
               {content.sections.withNumbers.title}
             </h2>
-            <DocList items={items} type="number" />
+            <DocList
+              items={items.map((item) => (
+                <>
+                  {item.description}
+                  {item.codeBlock ? item.codeBlock : null}
+                </>
+              ))}
+              type="number"
+            />
           </div>
         </div>
       </DocLayout>
