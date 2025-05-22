@@ -58,7 +58,7 @@ export default function DocList({ items, type = 'icon', delay = 0 }: DocListProp
             className={`group flex hover:bg-doc_bg-accent_light dark:hover:bg-doc_bg-accent_dark ${type === 'number' ? 'items-start' : 'items-center'} gap-3 rounded-lg transition-all duration-200 md:p-4`}
             variants={itemVariants}
           >
-            <div className={`relative flex-shrink-0 ${type === 'number' ? 'hidden md:block' : ''}`}>
+            <div className={`relative flex-shrink-0 ${type === 'number' ? 'hidden md:block pt-1' : ''}`}>
               <div
                 className={`absolute -inset-1 rounded-full bg-gradient-to-br ${gradientColor} opacity-75 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md`}
               ></div>
