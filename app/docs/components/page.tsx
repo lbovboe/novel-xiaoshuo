@@ -1,10 +1,10 @@
 'use client';
 
-import DocsWrapper from '../../components/docs/DocsWrapper';
-import DocLayout from '../../components/docs/DocLayout';
-import DocSection from '../../components/docs/DocSection';
-import DocList from '../../components/docs/DocList';
-import { useLanguage } from '../../components/docs/LanguageContext';
+import DocsWrapper from '@/app/components/docs/DocsWrapper';
+import DocLayout from '@/app/components/docs/DocLayout';
+import DocSection from '@/app/components/docs/DocSection';
+import DocList from '@/app/components/docs/DocList';
+import { useLanguage } from '@/app/components/docs/LanguageContext';
 
 export default function ComponentsPage() {
   const { language } = useLanguage();

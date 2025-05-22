@@ -1,11 +1,11 @@
 'use client';
 
 import { FaBook, FaTools, FaCogs, FaCode } from 'react-icons/fa';
-import DocsWrapper from '../components/docs/DocsWrapper';
-import DocLayout from '../components/docs/DocLayout';
-import DocFeatureCard from '../components/docs/DocFeatureCard';
-import KeyFeatures from '../components/docs/KeyFeatures';
-import { useLanguage } from '../components/docs/LanguageContext';
+import DocsWrapper from '@/app/components/docs/DocsWrapper';
+import DocLayout from '@/app/components/docs/DocLayout';
+import DocFeatureCard from '@/app/components/docs/DocFeatureCard';
+import KeyFeatures from '@/app/components/docs/KeyFeatures';
+import { useLanguage } from '@/app/components/docs/LanguageContext';
 
 // Documentation sections with both English and Chinese content
 const sections = [
