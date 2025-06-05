@@ -54,24 +54,9 @@ const DocCodeBlock: React.FC<CodeBlockProps> = ({
       )}
       <div className="code-container overflow-x-auto rounded-lg">
         <style jsx global>{`
-          .code-container pre {
-            margin: 0 !important;
-            border-radius: 0.5rem !important;
-            background: #111827 !important;
-          }
-
-          .code-container code {
-            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace !important;
-            font-size: 0.9rem !important;
-            white-space: pre !important;
-            word-wrap: normal !important;
-            tab-size: 2 !important;
-          }
-
-          @media (max-width: 640px) {
-            .code-container code {
-              font-size: 0.85rem !important;
-            }
+          .code-container {
+            container-type: inline-size;
+            width: 100%;
           }
         `}</style>
         <SyntaxHighlighter

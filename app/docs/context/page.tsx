@@ -1,10 +1,13 @@
 'use client';
 
-import DocsWrapper from '../../components/docs/DocsWrapper';
-import DocLayout from '../../components/docs/DocLayout';
-import DocSection from '../../components/docs/DocSection';
-import DocList from '../../components/docs/DocList';
-import { useLanguage } from '../../components/docs/LanguageContext';
+import DocsWrapper from '@/app/components/docs/DocsWrapper';
+import DocLayout from '@/app/components/docs/DocLayout';
+import DocSection from '@/app/components/docs/DocSection';
+import DocList from '@/app/components/docs/DocList';
+import { useLanguage } from '@/app/components/docs/LanguageContext';
+
+// Type for DocList items with optional codeBlock
+type DocItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
 
 export default function ContextPage() {
   const { language } = useLanguage();
@@ -24,31 +27,31 @@ export default function ContextPage() {
             : '应用程序使用多个 React 上下文来管理全局状态：',
         items: [
           {
-            en: (
-              <>
-                <strong>BookSettingsContext</strong>: Manages book reading settings (font size, language, auto-next,
-                etc.)
-              </>
-            ),
-            zh: (
-              <>
-                <strong>书籍设置上下文</strong>: 管理阅读设置（字体大小、语言、自动翻页等）
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>BookSettingsContext</strong>: Manages book reading settings (font size, language, auto-next,
+                  etc.)
+                </>
+              ) : (
+                <>
+                  <strong>书籍设置上下文</strong>: 管理阅读设置（字体大小、语言、自动翻页等）
+                </>
+              ),
           },
           {
-            en: (
-              <>
-                <strong>ThemeContext</strong>: Manages light/dark theme switching
-              </>
-            ),
-            zh: (
-              <>
-                <strong>主题上下文</strong>: 管理明暗主题切换
-              </>
-            ),
+            description:
+              language === 'en' ? (
+                <>
+                  <strong>ThemeContext</strong>: Manages light/dark theme switching
+                </>
+              ) : (
+                <>
+                  <strong>主题上下文</strong>: 管理明暗主题切换
+                </>
+              ),
           },
-        ],
+        ] as DocItem[],
       },
     },
   };
@@ -57,10 +60,10 @@ export default function ContextPage() {
     <DocsWrapper>
       <DocLayout title={content.title} description={content.description}>
         <DocSection title={content.sections.contextCategories.title} delay={0}>
-          <p className="mb-4 text-doc_text-secondary_light dark:text-doc_text-secondary_dark">
+          <p className="text-doc_text-secondary_light dark:text-doc_text-secondary_dark mb-4">
             {content.sections.contextCategories.description}
           </p>
-          <DocList items={content.sections.contextCategories.items.map((item) => item[language])} />
+          <DocList items={content.sections.contextCategories.items} />
         </DocSection>
       </DocLayout>
     </DocsWrapper>

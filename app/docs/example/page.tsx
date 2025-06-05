@@ -1,30 +1,33 @@
 'use client';
 
 import React from 'react';
-import DocsWrapper from '../../components/docs/DocsWrapper';
-import DocLayout from '../../components/docs/DocLayout';
-import DocList from '../../components/docs/DocList';
-import { useLanguage } from '../../components/docs/LanguageContext';
+import DocsWrapper from '@/app/components/docs/DocsWrapper';
+import DocLayout from '@/app/components/docs/DocLayout';
+import DocList from '@/app/components/docs/DocList';
+import { useLanguage } from '@/app/components/docs/LanguageContext';
+
+// Type for DocList items with optional codeBlock
+type DocItem = { description: React.ReactNode; codeBlock?: React.ReactNode };
 
 export default function ExamplePage() {
   const { language } = useLanguage();
 
   // Example items based on language
-  const items =
+  const items: DocItem[] =
     language === 'en'
       ? [
-          'This is the first list item with an icon',
-          'This is the second list item with an icon',
-          'This is the third list item with an icon',
-          'This is the fourth list item with an icon',
-          'This is the fifth list item with an icon',
+          { description: 'This is the first list item with an icon' },
+          { description: 'This is the second list item with an icon' },
+          { description: 'This is the third list item with an icon' },
+          { description: 'This is the fourth list item with an icon' },
+          { description: 'This is the fifth list item with an icon' },
         ]
       : [
-          '这是第一个带图标的列表项',
-          '这是第二个带图标的列表项',
-          '这是第三个带图标的列表项',
-          '这是第四个带图标的列表项',
-          '这是第五个带图标的列表项',
+          { description: '这是第一个带图标的列表项' },
+          { description: '这是第二个带图标的列表项' },
+          { description: '这是第三个带图标的列表项' },
+          { description: '这是第四个带图标的列表项' },
+          { description: '这是第五个带图标的列表项' },
         ];
 
   // Page content based on selected language
