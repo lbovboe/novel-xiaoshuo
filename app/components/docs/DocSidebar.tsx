@@ -122,16 +122,15 @@ export default function DocSidebar() {
   // Set expanded state based on pathname after mount
   useEffect(() => {
     if (!mounted) return;
-    if (pathname === '/docs/components') {
-      setExpanded({});
+
+    // Find if any navItem with 'more' matches the current pathname
+    const parentWithMore = navItems.find(
+      (item) => item.more && (item.more.some((sub) => sub.href === pathname) || item.href === pathname)
+    );
+    if (parentWithMore) {
+      setExpanded({ [parentWithMore.href]: true });
     } else {
-      // Find if any navItem with 'more' matches the current pathname
-      const parentWithMore = navItems.find((item) => item.more && item.more.some((sub) => sub.href === pathname));
-      if (parentWithMore) {
-        setExpanded({ [parentWithMore.href]: true });
-      } else {
-        setExpanded({});
-      }
+      setExpanded({});
     }
   }, [pathname, mounted]);
 
