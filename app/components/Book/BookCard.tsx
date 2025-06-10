@@ -33,10 +33,6 @@ const BookCard = ({ id, title, description, coverImage, chapterCount }: BookCard
             <div className="absolute inset-0 bg-gradient-to-t from-light-background-gradient-start/80 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100 dark:from-dark-background-gradient-start/80" />
           </div>
           <div className="p-6">
-            {/* <h2 className="mb-4 text-xl font-bold text-light-text-primary transition-colors dark:text-dark-text-primary">
-              {title}
-            </h2> */}
-            {/* <p className="mb-4 text-light-text-secondary dark:text-dark-text-secondary">{description}</p> */}
             <div className="flex items-center justify-between">
               <span className="rounded bg-light-primary/20 px-2.5 py-0.5 text-xs font-medium text-light-primary dark:bg-dark-primary/20 dark:text-dark-primary">
                 总共{chapterCount} 章节
