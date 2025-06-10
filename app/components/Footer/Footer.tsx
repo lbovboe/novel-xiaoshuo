@@ -6,7 +6,7 @@ const Footer = () => {
       - bg-light/dark-paper: Theme-based background color
       - border-t: Top border for visual separation
     */
-    <footer className="mt-auto border-t border-solid border-light-border bg-light-paper/30 py-6 dark:border-dark-border dark:bg-dark-paper/30">
+    <footer className="mt-auto border-t border-solid border-light-border bg-light-paper/20 py-6 dark:border-dark-border dark:bg-dark-paper/30">
       {/* 
         Container for content:
         - container: Sets max-width and centers content
