@@ -54,7 +54,7 @@ export default async function Home() {
   const books = await getBooks();
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute left-10 top-20 h-72 w-72 animate-pulse rounded-full bg-gradient-to-r from-blue-400 to-purple-500 mix-blend-multiply blur-xl filter"></div>
@@ -75,6 +75,15 @@ export default async function Home() {
               </p>
               <div className="mt-8 flex justify-center">
                 <div className="h-1 w-24 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+              </div>
+              {/* Modern Button to scroll to books section */}
+              <div className="mt-10 flex justify-center">
+                <a
+                  href="#books-section"
+                  className="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:from-pink-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+                >
+                  浏览热门小说
+                </a>
               </div>
             </div>
           </FadeIn>
@@ -102,10 +111,10 @@ export default async function Home() {
       </div>
 
       {/* Books Section */}
-      <div className="container mx-auto px-4 pb-20 md:px-8">
+      <div className="min-h-screen container mx-auto px-4 pb-20 md:px-8" id="books-section">
         <FadeIn direction="up" delay={0.2}>
           <div className="mb-12">
-            <h2 className="mb-4 text-center text-3xl font-bold  bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 bg-clip-text text-transparent dark:from-white dark:via-purple-200 dark:to-white md:text-4xl">
+            <h2 className="mb-4 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 bg-clip-text text-center text-3xl font-bold text-transparent dark:from-white dark:via-purple-200 dark:to-white md:text-4xl">
               热门小说推荐
             </h2>
             <p className="mx-auto max-w-2xl text-center text-slate-600 dark:text-slate-300">
