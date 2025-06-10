@@ -100,7 +100,7 @@ const BookCard = ({ id, title, description, coverImage, chapterCount }: BookCard
               {/* Status Badge */}
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-                <span className="text-sm font-medium text-green-600 dark:text-green-400">连载中</span>
+                <span className="text-sm font-medium text-green-600 dark:text-green-400">完结</span>
               </div>
 
               {/* Read Button */}
