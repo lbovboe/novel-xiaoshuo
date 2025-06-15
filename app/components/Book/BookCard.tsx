@@ -90,7 +90,7 @@ const BookCard = ({ id, title, description, coverImage, chapterCount }: BookCard
           <div className="space-y-4 p-6">
             {/* Title */}
             <div>
-              <h3 className="mb-2 line-clamp-2 text-xl font-bold text-slate-800 transition-colors duration-300 group-hover:text-purple-600 dark:text-white dark:group-hover:text-purple-400">
+              <h3 className="mb-2 line-clamp-1 text-xl font-bold text-slate-800 transition-colors duration-300 group-hover:text-purple-600 dark:text-white dark:group-hover:text-purple-400">
                 {title}
               </h3>
             </div>
