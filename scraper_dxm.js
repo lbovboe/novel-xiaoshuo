@@ -9,7 +9,7 @@ const sleep = promisify(setTimeout);
 // Configuration
 const config = {
   // Novel URL - replace with the URL of the novel you want to download
-  novelUrl: 'https://www.dxmwx.org/chapter/57132.html',
+  novelUrl: 'https://www.dxmwx.org/chapter/57531.html',
   // Output directory
   outputDir: './output',
   // Delay between requests (in ms) to avoid overloading the server
