@@ -27,8 +27,8 @@ const HomeClient: React.FC<HomeClientProps> = ({ books }) => {
       </div>
 
       {/* Hero Section */}
-      <div className="min-h-screen">
-        <div className="container relative mx-auto px-4 py-20 md:px-8">
+      <div className="min-h-screen flex justify-center items-center">
+        <div className="container relative mx-auto px-4 md:px-8 translate-y-[-40px]">
           <FadeIn direction="down">
             <div className="mb-16 text-center">
               <h1 className="mb-6 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 bg-clip-text text-5xl font-black text-transparent dark:from-white dark:via-purple-200 dark:to-white md:text-7xl">
