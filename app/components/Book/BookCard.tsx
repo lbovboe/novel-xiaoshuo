@@ -37,7 +37,7 @@ const BookCard = ({ id, title, description, coverImage, chapterCount }: BookCard
                 src={coverImage}
                 alt={title}
                 fill
-                className="object-cover transition-all duration-700 group-hover:scale-110"
+                className="object-cover transition-all duration-700 group-hover:scale-[1.02]"
                 onError={() => setImageError(true)}
               />
             ) : (
